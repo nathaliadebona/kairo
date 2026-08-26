@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Kairo</title>
+
+        <link rel="shortcut icon" href="assets/kairo-icon.svg" type="image/x-icon">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <link rel="stylesheet" href="styles/global.css">
+        <link rel="stylesheet" href="styles/timer.css">
+    </head>
+
+    <body>
+        <aside class="sidebar">
+            <img src="assets/kairo-logo-lockup.svg" alt="Kairo logo">
+
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active"><i class="fa-solid fa-stopwatch"></i> Timer</a></li>
+                    <li><a href="clients.html"><i class="fa-solid fa-user"></i> Clientes</a></li>
+                    <li><a href="projects.html"><i class="fa-regular fa-clipboard"></i> Projetos</a></li>
+                    <li><a href="tasks.html"><i class="fa-solid fa-list-check"></i> Tarefas</a></li>
+                    <li><a href="reports.html"><i class="fa-solid fa-file-lines"></i> Relatórios</a></li>
+                    <li><a href="finance.html"><i class="fa-solid fa-calculator"></i> Financeiro</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main>
+            <h1>Timer</h1>
+
+            <section id="timer">
+                <form action="">
+                    <label for="timer-description">Descrição</label>
+                    <input type="text" id="timer-description" placeholder="Descrição" required>
+
+                    <select name="timer-client" id="timer-client" required>
+                        <option value="">Selecione</option>
+                    </select>
+
+                    <select name="timer-project" id="timer-project" disabled required>
+                        <option value="">Selecione</option>
+                    </select>
+
+                    <label for="timer-tags"><span><i class="fa-solid fa-tags"></i></span></label>
+                    <input type="text" id="timer-tags">
+
+                    <button type="submit" id="start-btn">Iniciar</button>
+                </form>
+            </section>
+
+            <section id="timer-list">
+                <h2>Atividades de hoje</h2>
+
+                <div id="timer-list-items">
+
+                </div>
+            </section>
+        </main>
+    </body>
+</html>
