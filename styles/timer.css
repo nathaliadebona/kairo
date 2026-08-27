@@ -4,3 +4,46 @@
     border-radius: 0.5rem;
     background-color: var(--color-cards-bg);
 }
+
+#start-btn {
+    padding: 0.5rem 1.5rem;
+    border: none;
+    border-radius: 0.3rem;
+    line-height: 1;
+    background-color: var(--color-accent);
+    color: var(--color-bg);
+    font-family: inherit;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: filter 0.3s ease;
+}
+
+#start-btn:hover {
+    filter: brightness(90%);
+}
+
+@media (min-width: 48rem) {
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .form-row-top {
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        gap: 1rem;
+    }
+
+    .form-row-bottom {
+        display: grid;
+        grid-template-columns: 1fr 1fr auto;
+        gap: 1rem;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+}

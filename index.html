@@ -38,21 +38,31 @@
 
             <section id="timer">
                 <form action="">
-                    <label for="timer-description">Descrição</label>
-                    <input type="text" id="timer-description" placeholder="Descrição" required>
+                    <div class="form-row form-row-top">
+                        <div class="form-group">
+                            <label for="timer-description">Descrição</label>
+                            <input type="text" id="timer-description" placeholder="Descrição" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="timer-tags"><i class="fa-solid fa-tags"></i> Etiqueta</label>
+                            <input type="text" id="timer-tags">
+                        </div>
+                    </div>
 
-                    <select name="timer-client" id="timer-client" required>
-                        <option value="">Selecione o cliente</option>
-                    </select>
-
-                    <select name="timer-project" id="timer-project" disabled required>
-                        <option value="">Selecione o projeto</option>
-                    </select>
-
-                    <label for="timer-tags"><span><i class="fa-solid fa-tags"></i></span></label>
-                    <input type="text" id="timer-tags">
-
-                    <button type="submit" id="start-btn">Iniciar</button>
+                    <div class="form-row form-row-bottom">
+                        <div class="form-group">
+                            <label for="timer-client">Cliente</label>
+                            <select name="timer-client" id="timer-client" required>...</select>
+                        </div>
+                        <div class="form-group">
+                            <label for="timer-project">Projeto</label>
+                            <select name="timer-project" id="timer-project" disabled required>...</select>
+                        </div>
+                        <div class="form-group">
+                            <span class="btn-spacer">&nbsp;</span>
+                            <button type="submit" id="start-btn">Iniciar</button>
+                        </div>
+                    </div>
                 </form>
             </section>
 
