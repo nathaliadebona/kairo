@@ -17,6 +17,7 @@
     --color-text-secondary: #5F5E5A;
     --color-border: #D3D1C7;
     --color-accent: #085041;
+    --color-danger: #B33A3A;
 }
 
 body.dark-mode {
@@ -26,6 +27,7 @@ body.dark-mode {
     --color-text-secondary: #B4B2A9;
     --color-border: #5F5E5A;
     --color-accent: #1D9E75;
+    --color-danger: #E05D5D;
 }
 
 * {
@@ -112,6 +114,106 @@ body {
 #toggle-theme-btn:hover {
     background-color: var(--color-bg);
 }
+
+main {
+    flex: 1;
+    padding: 2rem 3rem;
+    overflow-y: auto;
+}
+
+h1 {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+#new-client-btn,
+#new-project-btn,
+#new-task-btn {
+    padding: 0.5rem 0.8rem;
+    border: none;
+    background-color: var(--color-accent);
+    color: var(--color-bg);
+    cursor: pointer;
+    transition: filter 0.3s ease;
+}
+
+#new-client-btn:hover,
+#new-project-btn:hover,
+#new-task-btn:hover {
+    filter: brightness(90%);
+}
+
+dialog {
+    margin: auto;
+    max-width: 30rem;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    background-color: var(--color-cards-bg);
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5)
+}
+
+label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+    color: var(--color-text-primary);
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 0.25rem;
+    border: solid 0.0625rem var(--color-border);
+    border-radius: 0.3rem;
+    font-family: inherit;
+    margin-bottom: 1rem;
+}
+
+.btn-save,
+.btn-cancel,
+.btn-delete {
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.3rem;
+    font-family: inherit;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: filter 0.3s ease, background-color 0.3s ease;
+}
+
+.btn-save:hover,
+.btn-delete:hover {
+    filter: brightness(90%);
+}
+
+.btn-save {
+    border: none;
+    background-color: var(--color-accent);
+    color: var(--color-bg);
+}
+
+.btn-cancel {
+    background-color: transparent;
+    border: 0.0625rem solid var(--color-border);
+    color: var(--color-text-primary);
+}
+
+.btn-cancel:hover{
+    background-color: var(--color-bg);
+}
+
+.btn-delete {
+    border: none;
+    background-color: var(--color-danger);
+    color: var(--color-bg);
+}
+
+
+
 
 
 
