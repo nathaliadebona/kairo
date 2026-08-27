@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Kairo</title>
+
+        <link rel="shortcut icon" href="assets/kairo-icon.svg" type="image/x-icon">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <link rel="stylesheet" href="styles/global.css">
+        <link rel="stylesheet" href="styles/tasks.css">
+    </head>
+
+    <body>
+        <aside class="sidebar">
+            <img src="assets/kairo-logo-lockup.svg" alt="Kairo logo">
+
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fa-solid fa-stopwatch"></i> Timer</a></li>
+                    <li><a href="clients.html"><i class="fa-solid fa-user"></i> Clientes</a></li>
+                    <li><a href="projects.html"><i class="fa-regular fa-clipboard"></i> Projetos</a></li>
+                    <li><a href="tasks.html" class="active"><i class="fa-solid fa-list-check"></i> Tarefas</a></li>
+                    <li><a href="reports.html"><i class="fa-solid fa-file-lines"></i> Relatórios</a></li>
+                    <li><a href="finance.html"><i class="fa-solid fa-calculator"></i> Financeiro</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main>
+            <h1>Cliente: </h1>
+
+            <button type="button" id="client-filter-btn"><i class="fa-solid fa-filter"></i></button>
+            <button type="button" id="new-task-btn">Nova Tarefa</button>
+
+            <div class="kanban-board">
+                <div class="kanban-column">
+                    <h2>A Fazer</h2>
+                    <div id="column-todo"></div>
+                </div>
+
+                <div class="kanban-column">
+                    <h2>Fazendo</h2>
+                    <div id="column-doing"></div>
+                </div>
+
+                <div class="kanban-column">
+                    <h2>Aguardando</h2>
+                    <div id="column-waiting"></div>
+                </div>
+
+                <div class="kanban-column">
+                    <h2>Concluída</h2>
+                    <div id="column-done"></div>
+                </div>
+
+                <div class="kanban-column">
+                    <h2>Arquivada</h2>
+                    <div id="column-archived"></div>
+                </div>
+            </div>
+
+            <dialog id="tasks-modal">
+                <form action="">
+                    <label for="task-title">Título</label>
+                    <input type="text" name="task-title" id="task-title" required>
+
+                    <label for="task-date">Prazo</label>
+                    <input type="date" name="task-date" id="task-date">
+
+                    <label for="task-priority">Prioridade</label>
+                    <select name="task-priority" id="task-priority">
+                        <option value="">Selecione</option>
+                        <option value="high">Alta</option>
+                        <option value="medium">Média</option>
+                        <option value="low">Baixa</option>
+                    </select>
+
+                    <label for="task-status">Status</label>
+                    <select name="task-status" id="task-status">
+                        <option value="">Selecione</option>
+                        <option value="todo">A Fazer</option>
+                        <option value="doing">Fazendo</option>
+                        <option value="waiting">Aguardando</option>
+                        <option value="done">Concluída</option>
+                        <option value="archived">Arquivada</option>
+                    </select>
+
+                    <label for="task-recurrence">É Recorrente?</label>
+                    <input type="checkbox" name="task-recurrence" id="task-recurrence">
+
+                    <label for="task-description">Descrição</label>
+                    <textarea name="task-description" id="task-description"></textarea>
+
+                    <input type="file" multiple id="tasks-attachment">
+
+                    <button type="submit" id="save-task-btn">Salvar</button>
+                    <button type="button" id="cancel-task-btn">Cancelar</button>
+                    <button type="button" id="delete-task-button">Excluir tarefa</button>
+                </form>
+            </dialog>
+        </main>
+    </body>
+</html>

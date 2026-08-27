@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Kairo</title>
+
+        <link rel="shortcut icon" href="assets/kairo-icon.svg" type="image/x-icon">
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <link rel="stylesheet" href="styles/global.css">
+        <link rel="stylesheet" href="styles/reports.css">
+    </head>
+
+    <body>
+        <aside class="sidebar">
+            <img src="assets/kairo-logo-lockup.svg" alt="Kairo logo">
+
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fa-solid fa-stopwatch"></i> Timer</a></li>
+                    <li><a href="clients.html"><i class="fa-solid fa-user"></i> Clientes</a></li>
+                    <li><a href="projects.html"><i class="fa-regular fa-clipboard"></i> Projetos</a></li>
+                    <li><a href="tasks.html"><i class="fa-solid fa-list-check"></i> Tarefas</a></li>
+                    <li><a href="reports.html"  class="active"><i class="fa-solid fa-file-lines"></i> Relatórios</a></li>
+                    <li><a href="finance.html"><i class="fa-solid fa-calculator"></i> Financeiro</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main>
+            <h1>Relatórios</h1>
+
+            <section id="reports-filter">
+                <form action="">
+                    <label for="reports-filter-client">Cliente</label>
+                    <select name="reports-filter-client" id="reports-filter-client">
+                        <option value="">Selecione</option>
+                    </select>
+
+                    <label for="reports-filter-project">Projeto</label>
+                    <select name="reports-filter-project" id="reports-filter-project">
+                        <option value="">Selecione</option>
+                    </select>
+
+                    <label for="reports-filter-tags">Etiqueta</label>
+                    <input type="text" name="reports-filter-tags" id="reports-filter-tags">
+
+                    <label for="reports-filter-period">Período</label>
+                    <input type="text" name="reports-filter-period" id="reports-filter-period">
+
+                    <button type="submit">Filtrar</button>
+                </form>
+            </section>
+
+            <section class="reports-summary">
+                <div class="reports-summary-card">
+                    <p class="reports-summary-label">Total de horas</p>
+                    <p id="total-hours">0h</p>
+                </div>
+
+                <div class="reports-summary-card">
+                    <p class="reports-summary-label">Total cobrável</p>
+                    <p id="total-billable">R$ 0,00</p>
+                </div>
+
+                <div class="reports-summary-card">
+                    <p class="reports-summary-label">Quantidade de registros</p>
+                    <p id="total-entries">0</p>
+                </div>
+            </section>
+
+            <button id="reports-summary-toggle">Ver detalhado</button>
+
+            <div id="reports-detailed-list">
+            </div>
+
+            <div id="reports-summary-list">
+            </div>
+        </main>
+    </body>
+</html>

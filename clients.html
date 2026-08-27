@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Kairo</title>
+
+        <link rel="shortcut icon" href="assets/kairo-icon.svg" type="image/x-icon">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <link rel="stylesheet" href="styles/global.css">
+        <link rel="stylesheet" href="styles/clients.css">
+    </head>
+
+    <body>
+        <aside class="sidebar">
+            <img src="assets/kairo-logo-lockup.svg" alt="Kairo logo">
+
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fa-solid fa-stopwatch"></i> Timer</a></li>
+                    <li><a href="clients.html" class="active"><i class="fa-solid fa-user"></i> Clientes</a></li>
+                    <li><a href="projects.html"><i class="fa-regular fa-clipboard"></i> Projetos</a></li>
+                    <li><a href="tasks.html"><i class="fa-solid fa-list-check"></i> Tarefas</a></li>
+                    <li><a href="reports.html"><i class="fa-solid fa-file-lines"></i> Relatórios</a></li>
+                    <li><a href="finance.html"><i class="fa-solid fa-calculator"></i> Financeiro</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main>
+            <h1>Clientes</h1>
+
+            <button type="button" id="new-client-btn">Novo Cliente</button>
+
+            <div id="clients-list">
+
+            </div>
+
+            <dialog id="clients-modal">
+                <form action="">
+                    <label for="company-name">Empresa</label>
+                    <input type="text" name="company-name" id="company-name">
+
+                    <label for="contact-name">Nome do cliente</label>
+                    <input type="text" name="contact-name" id="contact-name" required>
+
+                    <label for="charge-type">Tipo de Cobrança</label>
+                    <select name="charge-type" id="charge-type">
+                        <option value="">Selecione</option>
+                        <option value="hourly">Hora</option>
+                        <option value="fixed">Fixo</option>
+                    </select>
+
+                    <label for="charge-price">Valor</label>
+                    <input type="number" name="charge-price" id="charge-price" required>
+
+                    <label for="add-info">Informações Adicionais</label>
+                    <textarea name="add-info" id="add-info"></textarea>
+
+                    <input type="file" id="client-attachment" multiple>
+
+                    <button type="submit" id="save-client-btn">Salvar</button>
+                    <button type="button" id="cancel-client-btn">Cancelar</button>
+                </form>
+            </dialog>
+        </main>
+    </body>
+</html>
