@@ -53,6 +53,48 @@ body {
     padding: 1.5rem 1rem;
     background-color: var(--color-cards-bg);
     border-right: 0.0625rem solid var(--color-border);
+    transition: width 0.3s ease;
+}
+
+.sidebar.collapsed {
+    width: 5rem;
+}
+
+.sidebar.collapsed img {
+    display: none;
+}
+
+.sidebar.collapsed nav a {
+    position: relative;
+    justify-content: center;
+}
+
+.sidebar.collapsed nav a::after {
+    content: attr(data-tooltip);
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    background-color: var(--color-text-primary);
+    color: var(--color-bg);
+    border-radius: 0.3rem;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.sidebar.collapsed nav a:hover::after {
+    display: block;
+}
+
+.sidebar.collapsed i {
+    font-size: 1.2rem;
+}
+
+.sidebar.collapsed span {
+    display: none;
 }
 
 .sidebar img {
