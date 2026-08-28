@@ -22,6 +22,10 @@
     filter: brightness(90%);
 }
 
+.activity-card {
+    display: flex;
+}
+
 @media (min-width: 48rem) {
     form {
         display: flex;

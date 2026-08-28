@@ -10,7 +10,7 @@
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
         <link rel="stylesheet" href="styles/global.css">
-        <link rel="stylesheet" href="styles/tasks.css">
+        <link rel="stylesheet" href="styles/tasks-board.css">
     </head>
 
     <body>
@@ -36,8 +36,23 @@
         <main>
             <h1>Cliente: </h1>
 
-            <button type="button" id="client-filter-btn"><i class="fa-solid fa-filter"></i></button>
-            <button type="button" id="new-task-btn">Nova Tarefa</button>
+            <div class="board-actions">
+                <button type="button" id="new-task-btn">Nova Tarefa</button>
+                <button type="button" id="client-filter-btn"><i class="fa-solid fa-filter"></i></button>
+            
+                <div id="filter-menu">
+                    <label for="filter-priority">Prioridade</label>
+                    <select name="filter-priority" id="filter-priority">
+                        <option value="">Todas</option>
+                        <option value="high">Alta</option>
+                        <option value="medium">Média</option>
+                        <option value="low">Baixa</option>
+                    </select>
+
+                    <label for="filter-tag">Etiqueta</label>
+                    <input type="text" id="filter-tag">
+                </div>
+            </div>
 
             <div class="kanban-board">
                 <div class="kanban-column">
@@ -92,8 +107,10 @@
                         <option value="archived">Arquivada</option>
                     </select>
 
-                    <label for="task-recurrence">É Recorrente?</label>
-                    <input type="checkbox" name="task-recurrence" id="task-recurrence">
+                    <div class="checkbox-group">
+                        <label for="task-recurrence">É Recorrente?</label>
+                        <input type="checkbox" name="task-recurrence" id="task-recurrence">
+                    </div>
 
                     <label for="task-description">Descrição</label>
                     <textarea name="task-description" id="task-description"></textarea>

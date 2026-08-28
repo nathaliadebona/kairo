@@ -1,0 +1,78 @@
+.board-actions {
+    position: relative;
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+#client-filter-btn {
+    padding: 0.5rem 0.8rem;
+    border: 0.0625rem solid var(--color-border);
+    border-radius: 0.3rem;
+    background-color: transparent;
+    color: var(--color-text-primary);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#client-filter-btn:hover {
+    background-color: var(--color-cards-bg);
+}
+
+#filter-menu {
+    position: absolute;
+    width: 15rem;
+    display: none;
+    margin-top: 2.2rem;
+    padding: 1rem;
+    border: 0.0625rem solid var(--color-border);
+    border-radius: 0.5rem;
+    background-color: var(--color-cards-bg); 
+}
+
+.kanban-board {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    margin-top: 2rem;
+    padding-bottom: 1rem;
+}
+
+.kanban-column {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    width: 16rem;
+    max-height: 32rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--color-cards-bg);
+}
+
+.kanban-column h2 {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+}
+
+.kanban-column > div {
+    flex: 1;
+    overflow-y: auto;
+    margin-top: 0.5rem;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: auto;
+    margin-bottom: 0;
+}
+
+.checkbox-group label {
+    margin-bottom: 0;
+}
