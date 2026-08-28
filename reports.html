@@ -41,21 +41,29 @@
 
             <section id="reports-filter">
                 <form action="">
-                    <label for="reports-filter-client">Cliente</label>
-                    <select name="reports-filter-client" id="reports-filter-client">
-                        <option value="">Selecione</option>
-                    </select>
+                    <div class="form-group">
+                        <label for="reports-filter-client">Cliente</label>
+                        <select name="reports-filter-client" id="reports-filter-client">
+                            <option value="">Selecione</option>
+                        </select>
+                    </div>
 
-                    <label for="reports-filter-project">Projeto</label>
-                    <select name="reports-filter-project" id="reports-filter-project">
-                        <option value="">Selecione</option>
-                    </select>
+                    <div class="form-group">
+                        <label for="reports-filter-project">Projeto</label>
+                        <select name="reports-filter-project" id="reports-filter-project">
+                            <option value="">Selecione</option>
+                        </select>
+                    </div>
 
-                    <label for="reports-filter-tags">Etiqueta</label>
-                    <input type="text" name="reports-filter-tags" id="reports-filter-tags">
+                    <div class="form-group">
+                        <label for="reports-filter-tags">Etiqueta</label>
+                        <input type="text" name="reports-filter-tags" id="reports-filter-tags">
+                    </div>
 
-                    <label for="reports-filter-period">Período</label>
-                    <input type="text" name="reports-filter-period" id="reports-filter-period">
+                    <div class="form-group">
+                        <label for="reports-filter-period">Período</label>
+                        <input type="text" name="reports-filter-period" id="reports-filter-period">
+                    </div>
 
                     <button type="submit">Filtrar</button>
                 </form>
@@ -73,7 +81,7 @@
                 </div>
 
                 <div class="reports-summary-card">
-                    <p class="reports-summary-label">Quantidade de registros</p>
+                    <p class="reports-summary-label">Registros</p>
                     <p id="total-entries">0</p>
                 </div>
             </section>
