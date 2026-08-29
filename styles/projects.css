@@ -5,3 +5,42 @@ input[type="color"] {
     padding: 0.25rem;
     cursor: pointer;
 }
+
+#projects-list {
+    margin-top: 1.5rem;
+}
+
+.project-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--color-cards-bg);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.project-color-dot {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.project-name {
+    flex: 1;
+}
+
+.project-edit-icon {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+}
+
+@media (min-width: 48rem) {
+    .project-card:hover {
+        transform: scale(1.02);
+    }
+}

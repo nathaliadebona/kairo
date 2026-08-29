@@ -8,14 +8,13 @@ const deleteClientBtn = document.querySelector('.btn-delete');
 let editingClientId = null;
 
 function renderClients() {
-    console.log('renderClients rodou');
     const clientsList = document.getElementById('clients-list');
     clientsList.innerHTML = '';
     const clients = getClients();
 
     clients.forEach((client) => {
         const clientCard = document.createElement('div');
-        clientCard.className = 'client-card'
+        clientCard.className = 'client-card';
         const billingLabel = client.billingType === 'hourly'
             ? `R$ ${client.billingValue}/hora`
             : `R$ ${client.billingValue}/mês`;
@@ -102,7 +101,7 @@ clientsModalForm.addEventListener('submit', (event) => {
 
 deleteClientBtn.addEventListener('click', () => {
     const clients = getClients();
-    const updatedClients = clients.filter(function(client) {
+    const updatedClients = clients.filter((client) => {
         return client.id !== editingClientId;
     });
     saveClients(updatedClients);
