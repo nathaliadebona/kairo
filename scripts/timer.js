@@ -35,6 +35,11 @@ function renderTimeEntries() {
         const link = clientProjects.find((cp) => {
             return cp.id === entry.clientProjectId;
         });
+
+        if (!link) {
+            return;
+        }
+
         const client = findClientById(link.clientId);
         const project = findProjectById(link.projectId);
 

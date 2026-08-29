@@ -62,7 +62,7 @@ projectsModalForm.addEventListener('submit', (event) => {
         saveProjects(projects);
     } else {
         const newProject = {
-            id: Date.now(),
+            id: generateId(),
             name: projectName,
             color: projectColor
         };

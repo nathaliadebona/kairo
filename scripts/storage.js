@@ -1,3 +1,7 @@
+function generateId() {
+    return Date.now() + Math.floor(Math.random() * 1000);
+}
+
 function saveClients(clients) {
     localStorage.setItem('clients', JSON.stringify(clients));
 }

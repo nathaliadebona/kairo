@@ -113,7 +113,7 @@ clientsModalForm.addEventListener('submit', (event) => {
         clientId = editingClientId;
     } else {
         const newClient = {
-            id: Date.now(),
+            id: generateId(),
             companyName: companyName,
             contactName: contactName,
             billingType: chargeType,
@@ -135,13 +135,19 @@ clientsModalForm.addEventListener('submit', (event) => {
     });
 
     const newLinks = Array.from(checkedBoxes).map((checkbox) => {
-        return {
-            id: Date.now(),
-            clientId: clientId,
-            projectId: Number(checkbox.value),
-            active: true
-        };
+    const projectId = Number(checkbox.value);
+
+    const existingLink = clientProjects.find((cp) => {
+        return cp.clientId === clientId && cp.projectId === projectId;
     });
+
+    return {
+        id: existingLink ? existingLink.id : generateId(),
+        clientId: clientId,
+        projectId: projectId,
+        active: true
+    };
+});
 
     const allLinks = otherLinks.concat(newLinks);
     saveClientProjects(allLinks);
