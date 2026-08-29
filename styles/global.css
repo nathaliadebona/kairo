@@ -190,6 +190,29 @@ textarea {
     color: var(--color-bg);
 }
 
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: auto;
+    margin-bottom: 0;
+}
+
+.checkbox-group label {
+    margin-bottom: 0;
+}
+
+.project-color-dot {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
 @media (min-width: 48rem) {
     .sidebar {
         position: relative;

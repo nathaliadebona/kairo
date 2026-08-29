@@ -61,18 +61,3 @@
     margin-top: 0.5rem;
 }
 
-.checkbox-group {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-}
-
-.checkbox-group input[type="checkbox"] {
-    width: auto;
-    margin-bottom: 0;
-}
-
-.checkbox-group label {
-    margin-bottom: 0;
-}

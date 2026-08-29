@@ -50,6 +50,12 @@
     color: var(--color-text-secondary);
 }
 
+#client-projects-checkboxes {
+    margin-top: 0.5rem;
+    max-height: 10rem;
+    overflow-y: auto;
+}
+
 @media (min-width: 48rem) {
     .client-card:hover {
         transform: scale(1.02);

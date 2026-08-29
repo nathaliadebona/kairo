@@ -56,8 +56,10 @@ function renderProjectCheckboxes() {
 
     projects.forEach((project) => {
         const checkboxItem = document.createElement('div');
+        checkboxItem.className = 'checkbox-group';
         checkboxItem.innerHTML = `
             <input type="checkbox" value="${project.id}" id="project-check-${project.id}">
+            <div class="project-color-dot" style="background-color: ${project.color};"></div>
             <label for="project-check-${project.id}">${project.name}</label>
         `;
 
