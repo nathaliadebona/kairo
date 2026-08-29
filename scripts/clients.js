@@ -40,13 +40,43 @@ function renderClients() {
             document.getElementById('charge-price').value = client.billingValue;
             document.getElementById('add-info').value = client.notes;
 
+            renderProjectCheckboxes();
+            checkClientProjects(client.id);
+
             clientsModal.showModal();
         });
     });
 }
 
+function renderProjectCheckboxes() {
+    const checkboxesContainer = document.getElementById('client-projects-checkboxes');
+    checkboxesContainer.innerHTML = '';
+
+    const projects = getProjects();
+
+    projects.forEach((project) => {
+        const checkboxItem = document.createElement('div');
+        checkboxItem.innerHTML = `
+            <input type="checkbox" value="${project.id}" id="project-check-${project.id}">
+            <label for="project-check-${project.id}">${project.name}</label>
+        `;
+
+        checkboxesContainer.appendChild(checkboxItem);
+    });
+}
+
+function checkClientProjects(clientId) {
+    const linkedProjects = getProjectsByClientId(clientId);
+
+    linkedProjects.forEach((project) => {
+        const checkbox = document.getElementById(`project-check-${project.id}`);
+        checkbox.checked = true;
+    });
+}
+
 newClientBtn.addEventListener('click', () => {
     clientsModalForm.reset();
+    renderProjectCheckboxes();
     deleteClientBtn.style.display = 'none';
     clientsModal.showModal();
 });
@@ -63,6 +93,7 @@ clientsModalForm.addEventListener('submit', (event) => {
     const chargeType = document.getElementById('charge-type').value;
     const chargePrice = document.getElementById('charge-price').value;
     const addInfo = document.getElementById('add-info').value;
+    let clientId;
 
     if (editingClientId) {
         const clients = getClients();
@@ -77,6 +108,7 @@ clientsModalForm.addEventListener('submit', (event) => {
         client.notes = addInfo;
 
         saveClients(clients);
+        clientId = editingClientId;
     } else {
         const newClient = {
             id: Date.now(),
@@ -91,7 +123,26 @@ clientsModalForm.addEventListener('submit', (event) => {
         const clients = getClients();
         clients.push(newClient);
         saveClients(clients);
+        clientId = newClient.id;
     }
+
+    const checkedBoxes = document.querySelectorAll('#client-projects-checkboxes input:checked');
+    const clientProjects = getClientProjects();
+    const otherLinks = clientProjects.filter((link) => {
+        return link.clientId !== clientId;
+    });
+
+    const newLinks = Array.from(checkedBoxes).map((checkbox) => {
+        return {
+            id: Date.now(),
+            clientId: clientId,
+            projectId: Number(checkbox.value),
+            active: true
+        };
+    });
+
+    const allLinks = otherLinks.concat(newLinks);
+    saveClientProjects(allLinks);
 
     clientsModal.close();
     clientsModalForm.reset();
