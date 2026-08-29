@@ -117,7 +117,7 @@ timerForm.addEventListener('submit', (event) => {
         tag: timerTags
     };
 
-    timerRunning.style.display = 'block';
+    timerRunning.style.display = 'flex';
     timerForm.style.display = 'none';
 
     intervalId = setInterval(() => {
