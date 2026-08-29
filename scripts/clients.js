@@ -15,9 +15,19 @@ function renderClients() {
 
     clients.forEach((client) => {
         const clientCard = document.createElement('div');
+        clientCard.className = 'client-card'
+        const billingLabel = client.billingType === 'hourly'
+            ? `R$ ${client.billingValue}/hora`
+            : `R$ ${client.billingValue}/mês`;
         clientCard.innerHTML = `
-            <p>${client.companyName}</p>
-            <p>${client.contactName}</p>
+            <div class="client-info">
+                <p class="client-name">${client.companyName || client.contactName}</p>
+                <p class="client-contact">${client.contactName}</p>
+            </div>
+            <div class="client-billing-group">
+                <p class="client-billing">${billingLabel}</p>
+                <i class="fa-solid fa-pen-to-square client-edit-icon"></i>
+            </div>
         `;
         clientsList.appendChild(clientCard);
 

@@ -1,0 +1,57 @@
+#clients-list {
+    margin-top: 1.5rem;
+}
+
+.client-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 40rem;
+    margin-bottom: 0.75rem;
+    padding: 1rem;
+    border-left: 0.25rem solid var(--color-accent);
+    border-radius: 0 0.5rem 0.5rem 0;
+    background-color: var(--color-cards-bg);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.client-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.client-name {
+    font-display: 1rem;
+    font-weight: 500;
+}
+
+.client-contact {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    margin-top: 0.2rem;
+}
+
+.client-billing {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    white-space: nowrap;
+}
+
+.client-billing-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.client-edit-icon {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+}
+
+@media (min-width: 48rem) {
+    .client-card:hover {
+        transform: scale(1.02);
+    }
+}
