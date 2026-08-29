@@ -21,6 +21,68 @@ function renderClientOptions() {
     });
 }
 
+function renderTimeEntries() {
+    const timerListItems = document.getElementById('timer-list-items');
+    timerListItems.innerHTML = '';
+    const timeEntries = getTimeEntries();
+
+    const todayTimeEntries = timeEntries.filter((entry) => {
+        return isToday(entry.startTime);
+    });
+
+    todayTimeEntries.forEach((entry) => {
+        const clientProjects = getClientProjects();
+        const link = clientProjects.find((cp) => {
+            return cp.id === entry.clientProjectId;
+        });
+        const client = findClientById(link.clientId);
+        const project = findProjectById(link.projectId);
+
+        const durationFormatted = formatDuration(entry.duration);
+        const startDate = new Date(entry.startTime);
+        const startFormatted = `${String(startDate.getHours()).padStart(2, '0')}:${String(startDate.getMinutes()).padStart(2, '0')}`;
+    
+        const endDate = new Date(entry.endTime);
+        const endFormatted = `${String(endDate.getHours()).padStart(2, '0')}:${String(endDate.getMinutes()).padStart(2, '0')}`;
+    
+        const timeEntryCard = document.createElement('div');
+        timeEntryCard.className = 'time-entry-card';
+        timeEntryCard.style.borderLeftColor = project.color;
+        timeEntryCard.innerHTML = `
+            <div class="time-entry-info">
+                <p class="time-entry-client">${client.companyName || client.contactName}</p>
+                <p class="time-entry-project">${project.name}</p>
+                <p class="time-entry-description">${entry.description}</p>
+            </div>
+            <div class="time-entry-time">
+                <p class="time-entry-duration">${durationFormatted}</p>
+                <p class="time-entry-period">${startFormatted} – ${endFormatted}</p>
+            </div>
+        `;
+
+        timerListItems.appendChild(timeEntryCard);
+    });
+}
+
+function isToday(timestamp) {
+    const entryDate = new Date(timestamp);
+    const now = new Date();
+
+    return entryDate.getDate() === now.getDate() &&
+       entryDate.getMonth() === now.getMonth() &&
+       entryDate.getFullYear() === now.getFullYear();
+}
+
+function formatDuration(ms) {
+    const totalSeconds = Math.floor(ms / 1000);
+    const seconds = totalSeconds % 60;
+    const totalMinutes = Math.floor(totalSeconds / 60);
+    const minutes = totalMinutes % 60;
+    const hours = Math.floor(totalMinutes / 60);
+
+    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+}
+
 timerClient.addEventListener('change', () => {
     const clientId = Number(timerClient.value);
     timerProject.length = 1;
@@ -88,6 +150,7 @@ stopBtn.addEventListener('click', () => {
     const timeEntries = getTimeEntries();
     timeEntries.push(newTimeEntry);
     saveTimeEntries(timeEntries);
+    renderTimeEntries();
 
     timerRunning.style.display = 'none';
     timerForm.style.display = '';
@@ -96,3 +159,4 @@ stopBtn.addEventListener('click', () => {
 });
 
 renderClientOptions();
+renderTimeEntries();
