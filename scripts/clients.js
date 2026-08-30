@@ -1,6 +1,8 @@
 const newClientBtn = document.getElementById('new-client-btn');
 const clientsModal = document.getElementById('clients-modal');
 const fileInput = document.getElementById('client-attachment');
+const showDeletedBtn = document.getElementById('show-deleted-btn');
+const deletedClientsList = document.getElementById('deleted-clients-list');
 
 const cancelClientBtn = document.querySelector('.btn-cancel');
 const clientsModalForm = document.querySelector('#clients-modal form');
@@ -12,7 +14,9 @@ let editingClientId = null;
 function renderClients() {
     const clientsList = document.getElementById('clients-list');
     clientsList.innerHTML = '';
-    const clients = getClients();
+    const clients = getClients().filter((client) => {
+        return !client.deleted;
+    });
 
     clients.forEach((client) => {
         const clientCard = document.createElement('div');
@@ -48,6 +52,7 @@ function renderClients() {
             clientsModal.showModal();
         });
     });
+    renderDeletedClients();
 }
 
 function renderProjectCheckboxes() {
@@ -75,6 +80,53 @@ function checkClientProjects(clientId) {
     linkedProjects.forEach((project) => {
         const checkbox = document.getElementById(`project-check-${project.id}`);
         checkbox.checked = true;
+    });
+}
+
+function renderDeletedClients() {
+    deletedClientsList.innerHTML = '';
+    const clients = getClients().filter((client) => {
+        return client.deleted;
+    });
+
+    clients.forEach((client) => {
+        const card = document.createElement('div');
+        card.className = 'client-card';
+        card.innerHTML = `
+            <p class="client-name">${client.companyName || client.contactName}</p>
+            <div class="deleted-client-actions">
+                <button type="button" class="restore-btn">Restaurar</button>
+                <button type="button" class="permanent-delete-btn">Excluir</button>
+            </div>
+        `;
+        deletedClientsList.appendChild(card);
+
+        const restoreBtn = card.querySelector('.restore-btn');
+        restoreBtn.addEventListener('click', () => {
+            const clients = getClients();
+            const targetClient = clients.find((c) => {
+                return c.id === client.id;
+            });
+
+            targetClient.deleted = false;
+            saveClients(clients);
+            renderClients();
+        });
+
+        const permanentDeleteBtn = card.querySelector('.permanent-delete-btn');
+        permanentDeleteBtn.addEventListener('click', () => {
+            const confirmed = confirm('Isso vai excluir o cliente permanentemente, sem opção de restaurar. Tem certeza?');
+            if (!confirmed) {
+                return;
+            }
+
+            const clients = getClients();
+            const updatedClients = clients.filter((c) => {
+                return c.id !== client.id;
+            });
+            saveClients(updatedClients);
+            renderClients();
+        });
     });
 }
 
@@ -167,10 +219,12 @@ deleteClientBtn.addEventListener('click', () => {
         }
 
     const clients = getClients();
-    const updatedClients = clients.filter((client) => {
-        return client.id !== editingClientId;
+    const client = clients.find((c) => {
+        return c.id === editingClientId;
     });
-    saveClients(updatedClients);
+    client.deleted = true;
+    saveClients(clients);
+
     clientsModal.close();
     clientsModalForm.reset();
     renderClients();
@@ -192,6 +246,14 @@ dropZone.addEventListener('drop', (event) => {
 
     const files = event.dataTransfer.files;
     fileInput.files = files;
+});
+
+showDeletedBtn.addEventListener('click', () => {
+    if (deletedClientsList.style.display === 'none') {
+        deletedClientsList.style.display = 'block';
+    } else {
+        deletedClientsList.style.display = 'none';
+    }
 });
 
 renderClients();
