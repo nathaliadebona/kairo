@@ -44,11 +44,8 @@ function renderTimeEntries() {
         const project = findProjectById(link.projectId);
 
         const durationFormatted = formatDuration(entry.duration);
-        const startDate = new Date(entry.startTime);
-        const startFormatted = `${String(startDate.getHours()).padStart(2, '0')}:${String(startDate.getMinutes()).padStart(2, '0')}`;
-    
-        const endDate = new Date(entry.endTime);
-        const endFormatted = `${String(endDate.getHours()).padStart(2, '0')}:${String(endDate.getMinutes()).padStart(2, '0')}`;
+        const startFormatted = formatTime(entry.startTime);
+        const endFormatted = formatTime(entry.endTime);
     
         const timeEntryCard = document.createElement('div');
         timeEntryCard.className = 'time-entry-card';
@@ -76,16 +73,6 @@ function isToday(timestamp) {
     return entryDate.getDate() === now.getDate() &&
        entryDate.getMonth() === now.getMonth() &&
        entryDate.getFullYear() === now.getFullYear();
-}
-
-function formatDuration(ms) {
-    const totalSeconds = Math.floor(ms / 1000);
-    const seconds = totalSeconds % 60;
-    const totalMinutes = Math.floor(totalSeconds / 60);
-    const minutes = totalMinutes % 60;
-    const hours = Math.floor(totalMinutes / 60);
-
-    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 }
 
 timerClient.addEventListener('change', () => {
