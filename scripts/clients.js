@@ -1,9 +1,11 @@
 const newClientBtn = document.getElementById('new-client-btn');
 const clientsModal = document.getElementById('clients-modal');
+const fileInput = document.getElementById('client-attachment');
 
 const cancelClientBtn = document.querySelector('.btn-cancel');
 const clientsModalForm = document.querySelector('#clients-modal form');
 const deleteClientBtn = document.querySelector('.btn-delete');
+const dropZone = document.querySelector('.drop-zone');
 
 let editingClientId = null;
 
@@ -173,6 +175,23 @@ deleteClientBtn.addEventListener('click', () => {
     clientsModalForm.reset();
     renderClients();
     editingClientId = null;
+});
+
+dropZone.addEventListener('dragover', (event) => {
+    event.preventDefault();
+    dropZone.classList.add('drag-active');
+});
+
+dropZone.addEventListener('dragleave', () => {
+    dropZone.classList.remove('drag-active');
+});
+
+dropZone.addEventListener('drop', (event) => {
+    event.preventDefault();
+    dropZone.classList.remove('drag-active');
+
+    const files = event.dataTransfer.files;
+    fileInput.files = files;
 });
 
 renderClients();
