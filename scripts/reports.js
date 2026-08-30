@@ -2,6 +2,11 @@ const reportsClientSelect = document.getElementById('reports-filter-client');
 const reportsProjectSelect = document.getElementById('reports-filter-project');
 const filterForm = document.querySelector('#reports-filter form');
 
+flatpickr('#reports-filter-period', {
+    mode: 'range',
+    dateFormat: 'Y-m-d'
+});
+
 function renderFilterOptions() {
     const clients = getClients();
     clients.forEach((client) => {
@@ -20,7 +25,7 @@ function renderFilterOptions() {
     });
 }
 
-function renderFilteredEntries(clientFilter, projectFilter) {
+function renderFilteredEntries(clientFilter, projectFilter, dateRange) {
     const timeEntries = getTimeEntries();
 
     const filteredEntries = timeEntries.filter((entry) => {
@@ -35,8 +40,15 @@ function renderFilteredEntries(clientFilter, projectFilter) {
 
         const clientMatches = clientFilter === '' || String(link.clientId) === clientFilter;
         const projectMatches = projectFilter === '' || String(link.projectId) === projectFilter;
+        let dateMatches = true;
+            if (dateRange.length === 2) {
+                const start = dateRange[0].getTime();
+                const end = new Date(dateRange[1]);
+                end.setHours(23, 59, 59, 999);
+                dateMatches = entry.startTime >= start && entry.startTime <= end.getTime();
+            }
 
-        return clientMatches && projectMatches;
+        return clientMatches && projectMatches && dateMatches;
     });
 
     return filteredEntries;
@@ -47,8 +59,10 @@ filterForm.addEventListener('submit', (event) => {
 
     const clientFilter = reportsClientSelect.value;
     const projectFilter = reportsProjectSelect.value;
-
-    const entries = renderFilteredEntries(clientFilter, projectFilter);
+    const periodInput = document.getElementById('reports-filter-period');
+    const selectedDates = periodInput._flatpickr.selectedDates;
+    console.log('datas selecionadas:', selectedDates);
+    const entries = renderFilteredEntries(clientFilter, projectFilter, selectedDates);
 
     const detailedList = document.getElementById('reports-detailed-list');
     detailedList.innerHTML = '';
