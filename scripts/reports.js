@@ -83,6 +83,42 @@ filterForm.addEventListener('submit', (event) => {
 
         detailedList.appendChild(entryCard);
     });
+
+    document.getElementById('total-entries').textContent = entries.length;
+
+    const totalDuration = entries.reduce((sum, entry) => {
+        return sum + entry.duration;
+    }, 0);
+
+    document.getElementById('total-hours').textContent = formatDuration(totalDuration);
+
+    const countedFixedClients = new Set();
+
+    const totalBillable = entries.reduce((sum, entry) => {
+        if (!entry.billable) {
+            return sum;
+        }
+
+        const clientProjects = getClientProjects();
+        const link = clientProjects.find((cp) => {
+            return cp.id === entry.clientProjectId;
+        });
+
+        const client = findClientById(link.clientId);
+
+        if (client.billingType === 'hourly') {
+            const hours = entry.duration / 1000 / 60 / 60;
+            return sum + (hours * client.billingValue);
+        } else {
+            if (countedFixedClients.has(client.id)) {
+                return sum;
+            }
+            countedFixedClients.add(client.id);
+            return sum + client.billingValue;
+        }
+    }, 0);
+
+    document.getElementById('total-billable').textContent = `R$ ${totalBillable.toFixed(2)}`;
 });
 
 renderFilterOptions();
