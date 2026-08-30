@@ -49,5 +49,42 @@ function renderFinance() {
         }
     });
 
-    console.log(clientTotals);
+    const clientsArray = Object.values(clientTotals);
+
+    clientsArray.sort((a, b) => {
+        return b.total - a.total;
+    });
+
+    const financeList = document.getElementById('finance-clients-list');
+    financeList.innerHTML = '';
+
+    clientsArray.forEach((client) => {
+        const billingLabel = client.billingType === 'hourly' ? 'Por hora' : 'Fixo';
+        const durationFormatted = formatDuration(client.duration);
+
+        const financeCard = document.createElement('div');
+        financeCard.className = 'finance-client-card';
+        financeCard.innerHTML = `
+            <div class="finance-client-info">
+                <p class="finance-client-name">${client.clientName}</p>
+                <p class="finance-client-billing">${billingLabel} · ${durationFormatted}</p>
+            </div>
+            <p class="finance-client-total">R$ ${client.total.toFixed(2)}</p>
+        `;
+
+        financeList.appendChild(financeCard);
+    });
+
+    const overallTotal = clientsArray.reduce((sum, client) => {
+        return sum + client.total;
+    }, 0);
+
+    document.getElementById('total-month').textContent = `R$ ${overallTotal.toFixed(2)}`;
 }
+
+monthFilter.addEventListener('change', () => {
+    renderFinance();
+});
+
+renderFinance();
+
