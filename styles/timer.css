@@ -41,6 +41,24 @@
     background-color: var(--color-cards-bg);
 }
 
+.time-entry-card input,
+.time-entry-card select {
+    width: auto;
+    padding: 0.1rem 0.3rem;
+    border: 0.0625rem solid transparent;
+    background: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    margin-bottom: 0;
+}
+
+.time-entry-card input:focus,
+.time-entry-card select:focus {
+    border-color: var(--color-border);
+    background-color: var(--color-bg);
+}
+
 #timer-list-items {
     margin-top: 1rem;
 }
