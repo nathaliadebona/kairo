@@ -28,7 +28,7 @@ function renderTasks() {
         const column = document.getElementById(columnId);
 
         const taskCard = document.createElement('div');
-        taskCard.className = 'task-card';
+        taskCard.className = `task-card task-status-${task.status}`;
 
         const priorityLabels = {
             high: 'Alta',
@@ -41,6 +41,7 @@ function renderTasks() {
         taskCard.innerHTML = `
             <p class="task-title">${task.title}</p>
             <p class="task-priority">${priorityLabel}</p>
+            <i class="fa-solid fa-pen-to-square task-edit-icon"></i>
         `;
 
         column.appendChild(taskCard);

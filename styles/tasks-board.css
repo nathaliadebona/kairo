@@ -61,3 +61,60 @@
     margin-top: 0.5rem;
 }
 
+.column-status-todo {
+    border-top: 0.25rem solid #D85A30;
+}
+.column-status-todo h2 {
+    color: #D85A30;
+}
+
+.column-status-doing {
+    border-top: 0.25rem solid #378ADD;
+}
+.column-status-doing h2 {
+    color: #378ADD;
+}
+
+.column-status-waiting {
+    border-top: 0.25rem solid #E0A62B;
+}
+.column-status-waiting h2 {
+    color: #E0A62B;
+}
+
+.column-status-done {
+    border-top: 0.25rem solid #1D9E75;
+}
+.column-status-done h2 {
+    color: #1D9E75;
+}
+
+.column-status-archived {
+    border-top: 0.25rem solid var(--color-text-secondary);
+}
+.column-status-archived h2 {
+    color: var(--color-text-secondary);
+}
+
+.task-card {
+    position: relative;
+}
+
+.task-title {
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.task-priority {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+}
+
+.task-edit-icon {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+}
