@@ -1,6 +1,11 @@
 const reportsClientSelect = document.getElementById('reports-filter-client');
 const reportsProjectSelect = document.getElementById('reports-filter-project');
+const toggleBtn = document.getElementById('reports-summary-toggle');
+const detailedList = document.getElementById('reports-detailed-list');
+const summaryList = document.getElementById('reports-summary-list');
+
 const filterForm = document.querySelector('#reports-filter form');
+
 
 flatpickr('#reports-filter-period', {
     mode: 'range',
@@ -54,17 +59,47 @@ function renderFilteredEntries(clientFilter, projectFilter, dateRange) {
     return filteredEntries;
 }
 
+function groupEntriesByProject(entries) {
+    const groups = {};
+
+    entries.forEach((entry) => {
+        const clientProjects = getClientProjects();
+        const link = clientProjects.find((cp) => {
+            return cp.id === entry.clientProjectId;
+        });
+
+        const client = findClientById(link.clientId);
+        const project = findProjectById(link.projectId);
+        const groupKey = `${client.id}-${project.id}`;
+
+        if (!groups[groupKey]) {
+            groups[groupKey] = {
+                clientName: client.companyName || client.contactName,
+                projectName: project.name,
+                projectColor: project.color,
+                totalDuration: 0,
+                count: 0
+            };
+        }
+
+        groups[groupKey].totalDuration += entry.duration;
+        groups[groupKey].count += 1;
+    });
+
+    return groups;
+}
+
 filterForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
     const clientFilter = reportsClientSelect.value;
     const projectFilter = reportsProjectSelect.value;
+
     const periodInput = document.getElementById('reports-filter-period');
     const selectedDates = periodInput._flatpickr.selectedDates;
-    console.log('datas selecionadas:', selectedDates);
+
     const entries = renderFilteredEntries(clientFilter, projectFilter, selectedDates);
 
-    const detailedList = document.getElementById('reports-detailed-list');
     detailedList.innerHTML = '';
 
     entries.forEach((entry) => {
@@ -133,6 +168,32 @@ filterForm.addEventListener('submit', (event) => {
     }, 0);
 
     document.getElementById('total-billable').textContent = `R$ ${totalBillable.toFixed(2)}`;
+
+    const groups = groupEntriesByProject(entries);
+    summaryList.innerHTML = '';
+
+    Object.values(groups).forEach((group) => {
+        const summaryCard = document.createElement('div');
+        summaryCard.className = 'report-summary-group-card';
+        summaryCard.style.borderLeftColor = group.projectColor;
+        summaryCard.innerHTML = `
+            <p class="report-summary-group-title">${group.clientName} — ${group.projectName}</p>
+            <p class="report-summary-group-duration">${formatDuration(group.totalDuration)} (${group.count} registro${group.count > 1 ? 's' : ''})</p>
+        `;
+        summaryList.appendChild(summaryCard);
+    });
+});
+
+toggleBtn.addEventListener('click', () => {
+    if (detailedList.style.display === 'none') {
+        detailedList.style.display = 'block';
+        summaryList.style.display = 'none';
+        toggleBtn.textContent = 'Ver resumido';
+    } else {
+        detailedList.style.display = 'none';
+        summaryList.style.display = 'block';
+        toggleBtn.textContent = 'Ver detalhado';
+    }
 });
 
 renderFilterOptions();
