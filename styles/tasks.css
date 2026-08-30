@@ -1,0 +1,38 @@
+.task-client-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    padding: 1rem;
+    border-left: 0.25rem solid var(--color-accent);
+    border-radius: 0 0.5rem 0.5rem 0;
+    background-color: var(--color-cards-bg);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.task-client-name {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.task-client-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.task-client-meta i {
+    color: var(--color-accent);
+}
+
+.task-client-count {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+}
+
+@media (min-width: 48rem) {
+    .task-client-card:hover {
+        transform: scale(1.02);
+    }
+}

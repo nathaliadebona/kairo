@@ -6,7 +6,18 @@ function renderTaskClients() {
     clients.forEach((client) => {
         const taskClientCard = document.createElement('div');
         taskClientCard.className = 'task-client-card';
-        taskClientCard.innerHTML = `${client.companyName || client.contactName}`;
+        const clientTasks = getTasks().filter((task) => {
+            return task.clientId === client.id;
+        });
+
+        taskClientCard.innerHTML = `
+            <p class="task-client-name">${client.companyName || client.contactName}</p>
+            <div class="task-client-meta">
+                <p class="task-client-count">${clientTasks.length} tarefa(s)</p>
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+        `;
+        
         tasksClientsList.appendChild(taskClientCard);
 
         taskClientCard.addEventListener('click', () => {
