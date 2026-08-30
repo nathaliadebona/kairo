@@ -159,6 +159,11 @@ clientsModalForm.addEventListener('submit', (event) => {
 });
 
 deleteClientBtn.addEventListener('click', () => {
+    const confirmed = confirm('Tem certeza que deseja excluir esse cliente?');
+        if (!confirmed) {
+            return;
+        }
+
     const clients = getClients();
     const updatedClients = clients.filter((client) => {
         return client.id !== editingClientId;

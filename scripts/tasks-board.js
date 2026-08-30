@@ -132,6 +132,11 @@ tasksModalForm.addEventListener('submit', (event) => {
 });
 
 deleteTaskBtn.addEventListener('click', () => {
+    const confirmed = confirm('Tem certeza que deseja excluir essa tarefa?');
+        if (!confirmed) {
+            return;
+        }
+
     const tasks = getTasks();
     const updatedTasks = tasks.filter((task) => {
         return task.id !== editingTaskId;

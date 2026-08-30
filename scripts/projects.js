@@ -79,6 +79,11 @@ projectsModalForm.addEventListener('submit', (event) => {
 });
 
 deleteProjectBtn.addEventListener('click', () => {
+    const confirmed = confirm('Tem certeza que deseja excluir esse projeto?');
+        if (!confirmed) {
+            return;
+        }
+
     const projects = getProjects();
     const updatedProjects = projects.filter((project) => {
         return project.id !== editingProjectId;

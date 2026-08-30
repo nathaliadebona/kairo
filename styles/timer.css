@@ -85,6 +85,18 @@
     margin-top: 0.2rem;
 }
 
+.time-entry-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.time-entry-delete-icon {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+}
+
 #timer-running {
     display: flex;
     flex-direction: column;

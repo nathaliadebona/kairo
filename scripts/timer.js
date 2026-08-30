@@ -30,6 +30,8 @@ function renderTimeEntries() {
         return isToday(entry.startTime);
     });
 
+    todayTimeEntries.reverse();
+
     todayTimeEntries.forEach((entry) => {
         const clientProjects = getClientProjects();
         const link = clientProjects.find((cp) => {
@@ -50,19 +52,37 @@ function renderTimeEntries() {
         const timeEntryCard = document.createElement('div');
         timeEntryCard.className = 'time-entry-card';
         timeEntryCard.style.borderLeftColor = project.color;
-        timeEntryCard.innerHTML = `
+       timeEntryCard.innerHTML = `
             <div class="time-entry-info">
                 <p class="time-entry-client">${client.companyName || client.contactName}</p>
                 <p class="time-entry-project">${project.name}</p>
                 <p class="time-entry-description">${entry.description}</p>
             </div>
-            <div class="time-entry-time">
-                <p class="time-entry-duration">${durationFormatted}</p>
-                <p class="time-entry-period">${startFormatted} – ${endFormatted}</p>
+            <div class="time-entry-actions">
+                <div class="time-entry-time">
+                    <p class="time-entry-duration">${durationFormatted}</p>
+                    <p class="time-entry-period">${startFormatted} – ${endFormatted}</p>
+                </div>
+                <i class="fa-solid fa-trash time-entry-delete-icon"></i>
             </div>
         `;
 
         timerListItems.appendChild(timeEntryCard);
+
+        const deleteIcon = timeEntryCard.querySelector('.time-entry-delete-icon');
+        deleteIcon.addEventListener('click', () => {
+            const confirmed = confirm('Tem certeza que deseja excluir esse registro?');
+            if (!confirmed) {
+                return;
+            }
+
+            const timeEntries = getTimeEntries();
+            const updatedEntries = timeEntries.filter((e) => {
+                return e.id !== entry.id;
+            });
+            saveTimeEntries(updatedEntries);
+            renderTimeEntries();
+        });
     });
 }
 

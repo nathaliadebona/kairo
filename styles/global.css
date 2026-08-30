@@ -155,6 +155,14 @@ textarea {
     margin-bottom: 1rem;
 }
 
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
 .btn-save,
 .btn-cancel,
 .btn-delete {
@@ -164,6 +172,11 @@ textarea {
     font-size: 0.9rem;
     cursor: pointer;
     transition: filter 0.3s ease, background-color 0.3s ease;
+}
+
+.btn-save,
+.btn-cancel {
+    width: 7rem;
 }
 
 .btn-save:hover,
@@ -188,6 +201,8 @@ textarea {
 }
 
 .btn-delete {
+    display: block;
+    margin: 0.5rem auto 0;
     border: none;
     background-color: var(--color-danger);
     color: var(--color-bg);
