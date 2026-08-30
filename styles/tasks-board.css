@@ -99,6 +99,13 @@
 
 .task-card {
     position: relative;
+    margin-bottom: 0.75rem;
+    padding: 0.75rem;
+    border-bottom: 0.0625rem solid var(--color-border);
+    border-radius: 0.5rem;
+    background-color: var(--color-cards-bg);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .task-title {
@@ -118,4 +125,10 @@
     right: 0.5rem;
     font-size: 0.75rem;
     color: var(--color-text-secondary);
+}
+
+@media (min-width: 48rem) {
+    .task-card:hover {
+        background-color: var(--color-bg);
+    }
 }
