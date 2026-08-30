@@ -5,6 +5,10 @@
     background-color: var(--color-cards-bg);
 }
 
+.btn-spacer {
+    display: none;
+}
+
 #start-btn {
     padding: 0.5rem 1.5rem;
     border: none;
@@ -134,6 +138,12 @@
     .form-group {
         display: flex;
         flex-direction: column;
+    }
+
+    .btn-spacer {
+        display: block;
+        font-size: 1rem;
+        margin-bottom: 0.4rem;
     }
 
 }

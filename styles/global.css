@@ -101,7 +101,8 @@ main {
 
 h1 {
     margin-bottom: 2rem;
-    font-size: 2rem;
+    font-size: 1.5rem;
+    text-align: center;
 }
 
 #new-client-btn,
@@ -109,6 +110,7 @@ h1 {
 #new-task-btn {
     padding: 0.5rem 0.8rem;
     border: none;
+    border-radius: 0.3rem;
     background-color: var(--color-accent);
     color: var(--color-bg);
     cursor: pointer;
@@ -138,7 +140,8 @@ label {
     display: block;
     margin-bottom: 0.4rem;
     font-size: 0.9rem;
-    color: var(--color-text-primary);
+    font-weight: 500;
+    color: var(--color-accent);
 }
 
 input,
@@ -213,7 +216,19 @@ textarea {
     flex-shrink: 0;
 }
 
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+}
+
 @media (min-width: 48rem) {
+    h1 {
+        font-size: 2rem;
+        text-align: left;
+    }
+
     .sidebar {
         position: relative;
         display: flex;
@@ -278,6 +293,7 @@ textarea {
 
     .sidebar nav a {
         display: flex;
+        align-items: center;
         gap: 0.5rem;
         padding: 0.8rem;
         text-decoration: none;
@@ -293,6 +309,10 @@ textarea {
 
     .sidebar nav a:hover {
         background-color: var(--color-bg);
+    }
+
+    .sidebar nav a.active:hover {
+        background-color: var(--color-accent);
     }
 
     #toggle-theme-btn {
@@ -334,6 +354,15 @@ textarea {
     main {
         padding-bottom: 2rem;
     }
+
+    label {
+        font-size: 1rem;
+    }
+
+    #timer input,
+    #timer select {
+        height: 2.2rem;
+    }   
 }
 
 
