@@ -1,5 +1,7 @@
 const newTaskBtn = document.getElementById('new-task-btn');
 const tasksModal = document.getElementById('tasks-modal');
+const filterBtn = document.getElementById('client-filter-btn');
+const filterMenu = document.getElementById('filter-menu');
 const cancelTaskBtn = document.querySelector('.btn-cancel');
 const deleteTaskBtn = document.querySelector('.btn-delete');
 const tasksModalForm = document.querySelector('#tasks-modal form');
@@ -23,7 +25,16 @@ function renderTasks() {
         return task.clientId === clientId;
     });
 
-    clientTasks.forEach(task => {
+    const priorityFilter = document.getElementById('filter-priority').value;
+    
+    const filteredTasks = clientTasks.filter((task) => {
+    if (priorityFilter === '') {
+        return true;
+    }
+    return task.priority === priorityFilter;
+    });
+
+    filteredTasks.forEach((task) => {
         const columnId = `column-${task.status}`;
         const column = document.getElementById(columnId);
 
@@ -130,6 +141,19 @@ deleteTaskBtn.addEventListener('click', () => {
     tasksModalForm.reset();
     renderTasks();
     editingTaskId = null;
+});
+
+filterBtn.addEventListener('click', () => {
+    if (filterMenu.style.display === 'block') {
+        filterMenu.style.display = 'none';
+    } else {
+        filterMenu.style.display = 'block';
+    }
+});
+
+const priorityFilterSelect = document.getElementById('filter-priority');
+priorityFilterSelect.addEventListener('change', () => {
+    renderTasks();
 });
 
 renderTasks();

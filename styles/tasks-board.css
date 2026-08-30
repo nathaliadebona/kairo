@@ -29,6 +29,7 @@
     border: 0.0625rem solid var(--color-border);
     border-radius: 0.5rem;
     background-color: var(--color-cards-bg); 
+    z-index: 10;
 }
 
 .kanban-board {
