@@ -113,6 +113,11 @@
     font-size: 0.9rem;
     color: var(--color-text-secondary);
     cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.time-entry-delete-icon:hover {
+    color: var(--color-danger);
 }
 
 #timer-running {

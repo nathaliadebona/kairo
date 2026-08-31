@@ -44,7 +44,7 @@ function renderTimeEntries() {
         const client = findClientById(link.clientId);
         const project = findProjectById(link.projectId);
 
-        const durationFormatted = formatDuration(entry.duration);
+        const durationFormatted = formatDurationRounded(entry.duration);
         const startFormatted = formatTime(entry.startTime);
         const endFormatted = formatTime(entry.endTime);
 

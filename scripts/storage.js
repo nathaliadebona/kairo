@@ -94,3 +94,11 @@ function getTimeEntriesByClientProjectId(clientProjectId) {
     });
     return links;
 }
+
+function formatDurationRounded(ms) {
+    const totalMinutes = Math.ceil(ms / 1000 / 60);
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
+
+    return `${hours}h ${minutes}min`;
+}

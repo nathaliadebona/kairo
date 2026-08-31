@@ -111,7 +111,7 @@ filterForm.addEventListener('submit', (event) => {
         const client = findClientById(link.clientId);
         const project = findProjectById(link.projectId);
 
-        const durationFormatted = formatDuration(entry.duration);
+        const durationFormatted = formatDurationRounded(entry.duration);
         const startFormatted = formatTime(entry.startTime);
         const endFormatted = formatTime(entry.endTime);
 
@@ -139,7 +139,7 @@ filterForm.addEventListener('submit', (event) => {
         return sum + entry.duration;
     }, 0);
 
-    document.getElementById('total-hours').textContent = formatDuration(totalDuration);
+    document.getElementById('total-hours').textContent = formatDurationRounded(totalDuration);
 
     const countedFixedClients = new Set();
 
@@ -178,7 +178,7 @@ filterForm.addEventListener('submit', (event) => {
         summaryCard.style.borderLeftColor = group.projectColor;
         summaryCard.innerHTML = `
             <p class="report-summary-group-title">${group.clientName} — ${group.projectName}</p>
-            <p class="report-summary-group-duration">${formatDuration(group.totalDuration)} (${group.count} registro${group.count > 1 ? 's' : ''})</p>
+            <p class="report-summary-group-duration">${formatDurationRounded(group.totalDuration)} (${group.count} registro${group.count > 1 ? 's' : ''})</p>
         `;
         summaryList.appendChild(summaryCard);
     });
