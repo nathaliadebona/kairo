@@ -260,10 +260,6 @@ textarea:focus {
         width: 5rem;
     }
 
-    .sidebar.collapsed img {
-        display: none;
-    }
-
     .sidebar.collapsed nav a {
         position: relative;
         justify-content: center;
