@@ -140,6 +140,33 @@
     color: var(--color-text-secondary);
 }
 
+#pagination-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+#pagination-controls button {
+    padding: 0.4rem 0.7rem;
+    border: 0.0625rem solid var(--color-border);
+    border-radius: 0.3rem;
+    background-color: transparent;
+    color: var(--color-text-primary);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#pagination-controls button:hover {
+    background-color: var(--color-cards-bg);
+}
+
+#page-indicator {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+}
+
 @media (min-width: 48rem) {
     #reports-filter form {
         display: grid;

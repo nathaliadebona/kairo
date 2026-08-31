@@ -3,9 +3,14 @@ const reportsProjectSelect = document.getElementById('reports-filter-project');
 const toggleBtn = document.getElementById('reports-summary-toggle');
 const detailedList = document.getElementById('reports-detailed-list');
 const summaryList = document.getElementById('reports-summary-list');
-
+const prevPageBtn = document.getElementById('prev-page-btn');
+const nextPageBtn = document.getElementById('next-page-btn');
+const pageIndicator = document.getElementById('page-indicator');
+const paginationControls = document.getElementById('pagination-controls');
 const filterForm = document.querySelector('#reports-filter form');
 
+const itemsPerPage = 20;
+let currentPage = 1;
 
 flatpickr('#reports-filter-period', {
     mode: 'range',
@@ -89,9 +94,7 @@ function groupEntriesByProject(entries) {
     return groups;
 }
 
-filterForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-
+function applyFilters() {
     const clientFilter = reportsClientSelect.value;
     const projectFilter = reportsProjectSelect.value;
 
@@ -99,10 +102,15 @@ filterForm.addEventListener('submit', (event) => {
     const selectedDates = periodInput._flatpickr.selectedDates;
 
     const entries = renderFilteredEntries(clientFilter, projectFilter, selectedDates);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+
+    const paginatedEntries = entries.slice(startIndex, endIndex);
+    pageIndicator.textContent = currentPage;
 
     detailedList.innerHTML = '';
 
-    entries.forEach((entry) => {
+    paginatedEntries.forEach((entry) => {
         const clientProjects = getClientProjects();
         const link = clientProjects.find((cp) => {
             return cp.id === entry.clientProjectId;
@@ -182,18 +190,38 @@ filterForm.addEventListener('submit', (event) => {
         `;
         summaryList.appendChild(summaryCard);
     });
+}
+
+filterForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    currentPage = 1;
+    applyFilters();
 });
 
 toggleBtn.addEventListener('click', () => {
     if (detailedList.style.display === 'none') {
         detailedList.style.display = 'block';
         summaryList.style.display = 'none';
+        paginationControls.style.display = 'flex';
         toggleBtn.textContent = 'Ver resumido';
     } else {
         detailedList.style.display = 'none';
         summaryList.style.display = 'block';
+        paginationControls.style.display = 'none';
         toggleBtn.textContent = 'Ver detalhado';
     }
+});
+
+prevPageBtn.addEventListener('click', () => {
+    if (currentPage > 1) {
+        currentPage -= 1;
+        applyFilters();
+    }
+});
+
+nextPageBtn.addEventListener('click', () => {
+    currentPage += 1;
+    applyFilters();
 });
 
 renderFilterOptions();
