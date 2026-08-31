@@ -26,12 +26,13 @@ function renderTasks() {
     });
 
     const priorityFilter = document.getElementById('filter-priority').value;
-    
+    const wordFilter = document.getElementById('filter-word').value.toLowerCase();
+
     const filteredTasks = clientTasks.filter((task) => {
-    if (priorityFilter === '') {
-        return true;
-    }
-    return task.priority === priorityFilter;
+    const priorityMatches = priorityFilter === '' || task.priority === priorityFilter;
+    const wordMatches = wordFilter === '' || task.title.toLowerCase().includes(wordFilter);
+
+    return priorityMatches && wordMatches;
     });
 
     filteredTasks.forEach((task) => {
@@ -158,6 +159,10 @@ filterBtn.addEventListener('click', () => {
 
 const priorityFilterSelect = document.getElementById('filter-priority');
 priorityFilterSelect.addEventListener('change', () => {
+    renderTasks();
+});
+
+document.getElementById('filter-word').addEventListener('input', () => {
     renderTasks();
 });
 

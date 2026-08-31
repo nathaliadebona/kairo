@@ -48,6 +48,9 @@
                         <option value="medium">Média</option>
                         <option value="low">Baixa</option>
                     </select>
+
+                    <label for="filter-word">Filtrar por palavra</label>
+                    <input type="text" name="filter-word" id="filter-word">
                 </div>
             </div>
 
@@ -83,8 +86,10 @@
                     <form action="">
                         <label for="task-title">Título</label>
                         <input type="text" name="task-title" id="task-title" required>
+                        
                         <label for="task-date">Prazo</label>
                         <input type="date" name="task-date" id="task-date">
+                        
                         <label for="task-priority">Prioridade</label>
                         <select name="task-priority" id="task-priority">
                             <option value="">Selecione</option>
@@ -92,6 +97,7 @@
                             <option value="medium">Média</option>
                             <option value="low">Baixa</option>
                         </select>
+                        
                         <label for="task-status">Status</label>
                         <select name="task-status" id="task-status">
                             <option value="">Selecione</option>
@@ -101,17 +107,22 @@
                             <option value="done">Concluída</option>
                             <option value="archived">Arquivada</option>
                         </select>
+                        
                         <div class="checkbox-group">
                             <label for="task-recurrence">É Recorrente?</label>
                             <input type="checkbox" name="task-recurrence" id="task-recurrence">
                         </div>
+                        
                         <label for="task-description">Descrição</label>
                         <textarea name="task-description" id="task-description"></textarea>
+                        
                         <input type="file" multiple id="tasks-attachment">
+                        
                         <div class="modal-actions">
                             <button type="submit" class="btn-save">Salvar</button>
                             <button type="button" class="btn-cancel">Cancelar</button>
                         </div>
+                        
                         <button type="button" class="btn-delete">Excluir tarefa</button>
                     </form>
                 </div>
