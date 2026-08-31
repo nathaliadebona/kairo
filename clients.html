@@ -44,40 +44,35 @@
             <div id="deleted-clients-list" style="display: none;"></div>
 
             <dialog id="clients-modal">
-                <form action="">
-                    <label for="company-name">Empresa</label>
-                    <input type="text" name="company-name" id="company-name">
-
-                    <label for="contact-name">Nome do cliente</label>
-                    <input type="text" name="contact-name" id="contact-name" required>
-
-                    <label for="charge-type">Tipo de Cobrança</label>
-                    <select name="charge-type" id="charge-type">
-                        <option value="">Selecione</option>
-                        <option value="hourly">Hora</option>
-                        <option value="fixed">Fixo</option>
-                    </select>
-
-                    <label for="charge-price">Valor</label>
-                    <input type="number" name="charge-price" id="charge-price" required>
-
-                    <label for="add-info">Informações Adicionais</label>
-                    <textarea name="add-info" id="add-info"></textarea>
-
-                   <div class="drop-zone">
-                        <p>Arraste arquivos aqui ou clique para selecionar</p>
-                        <input type="file" id="client-attachment" multiple>
-                    </div>
-
-                    <label>Projetos vinculados</label>
-                    <div id="client-projects-checkboxes"></div>
-
-                    <div class="modal-actions">
-                        <button type="submit" class="btn-save">Salvar</button>
-                        <button type="button" class="btn-cancel">Cancelar</button>
-                    </div>
-                    <button type="button" class="btn-delete">Excluir cliente</button>
-                </form>
+                <div class="modal-content">
+                    <form action="">
+                        <label for="company-name">Empresa</label>
+                        <input type="text" name="company-name" id="company-name">
+                        <label for="contact-name">Nome do cliente</label>
+                        <input type="text" name="contact-name" id="contact-name" required>
+                        <label for="charge-type">Tipo de Cobrança</label>
+                        <select name="charge-type" id="charge-type">
+                            <option value="">Selecione</option>
+                            <option value="hourly">Hora</option>
+                            <option value="fixed">Fixo</option>
+                        </select>
+                        <label for="charge-price">Valor</label>
+                        <input type="number" name="charge-price" id="charge-price" required>
+                        <label for="add-info">Informações Adicionais</label>
+                        <textarea name="add-info" id="add-info"></textarea>
+                       <div class="drop-zone">
+                            <p>Arraste arquivos aqui ou clique para selecionar</p>
+                            <input type="file" id="client-attachment" multiple>
+                        </div>
+                        <label>Projetos vinculados</label>
+                        <div id="client-projects-checkboxes"></div>
+                        <div class="modal-actions">
+                            <button type="submit" class="btn-save">Salvar</button>
+                            <button type="button" class="btn-cancel">Cancelar</button>
+                        </div>
+                        <button type="button" class="btn-delete">Excluir cliente</button>
+                    </form>
+                </div>
             </dialog>
         </main>
 
