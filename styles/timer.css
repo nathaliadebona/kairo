@@ -157,6 +157,30 @@
     filter: brightness(90%);
 }
 
+.timer-mode-toggle {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.timer-mode-toggle button {
+    padding: 0.4rem 0.8rem;
+    border: 0.0625rem solid var(--color-border);
+    border-radius: 0.3rem;
+    background-color: transparent;
+    color: var(--color-text-secondary);
+    font-family: inherit;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.timer-mode-toggle button.active {
+    background-color: var(--color-accent);
+    color: var(--color-bg);
+    border-color: var(--color-accent);
+}
+
 @media (min-width: 48rem) {
     form {
         display: flex;
@@ -187,4 +211,15 @@
         margin-bottom: 0.4rem;
     }
 
+    .manual-fields-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 1rem;
+    }
+
+    #manual-total {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: var(--color-accent);
+    }
 }

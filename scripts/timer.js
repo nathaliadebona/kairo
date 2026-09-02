@@ -3,6 +3,10 @@ const timerProject = document.getElementById('timer-project');
 const timerRunning = document.getElementById('timer-running');
 const timerDisplay = document.getElementById('timer-display');
 const stopBtn = document.getElementById('stop-btn');
+const modeTimerBtn = document.getElementById('mode-timer-btn');
+const modeManualBtn = document.getElementById('mode-manual-btn');
+const manualFields = document.getElementById('manual-fields');
+
 const timerForm = document.querySelector('#timer form');
 
 let activeEntry = null;
@@ -44,7 +48,7 @@ function renderTimeEntries() {
         const client = findClientById(link.clientId);
         const project = findProjectById(link.projectId);
 
-        const durationFormatted = formatDurationRounded(entry.duration);
+        const durationFormatted = formatDuration(entry.duration);
         const startFormatted = formatTime(entry.startTime);
         const endFormatted = formatTime(entry.endTime);
 
@@ -303,6 +307,30 @@ function isToday(timestamp) {
         entryDate.getFullYear() === now.getFullYear();
 }
 
+function updateManualTotal() {
+    const startValue = document.getElementById('manual-start').value;
+    const endValue = document.getElementById('manual-end').value;
+
+    if (!startValue || !endValue) {
+        return;
+    }
+
+    const [startHours, startMinutes] = startValue.split(':');
+    const [endHours, endMinutes] = endValue.split(':');
+
+    const startTotalMinutes = Number(startHours) * 60 + Number(startMinutes);
+    const endTotalMinutes = Number(endHours) * 60 + Number(endMinutes);
+
+    const diffMinutes = endTotalMinutes - startTotalMinutes;
+    const hours = Math.floor(diffMinutes / 60);
+    const minutes = diffMinutes % 60;
+
+    document.getElementById('manual-total').textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+}
+
+document.getElementById('manual-start').addEventListener('change', updateManualTotal);
+document.getElementById('manual-end').addEventListener('change', updateManualTotal);
+
 timerClient.addEventListener('change', () => {
     const clientId = Number(timerClient.value);
     timerProject.length = 1;
@@ -322,6 +350,42 @@ timerForm.addEventListener('submit', (event) => {
 
     const timerDescription = document.getElementById('timer-description').value;
     const timerTags = document.getElementById('timer-tags').value;
+
+    if (modeManualBtn.classList.contains('active')) {
+        const manualDate = document.getElementById('manual-date').value;
+        const manualStart = document.getElementById('manual-start').value;
+        const manualEnd = document.getElementById('manual-end').value;
+
+        const [year, month, day] = manualDate.split('-');
+        const [startHours, startMinutes] = manualStart.split(':');
+        const [endHours, endMinutes] = manualEnd.split(':');
+
+        const startDate = new Date(Number(year), Number(month) - 1, Number(day), Number(startHours), Number(startMinutes));
+        const endDate = new Date(Number(year), Number(month) - 1, Number(day), Number(endHours), Number(endMinutes));
+
+        const clientProjects = getClientProjects();
+        const link = clientProjects.find((cp) => {
+            return cp.clientId === Number(timerClient.value) && cp.projectId === Number(timerProject.value);
+        });
+
+        const newTimeEntry = {
+            id: generateId(),
+            clientProjectId: link.id,
+            startTime: startDate.getTime(),
+            endTime: endDate.getTime(),
+            duration: endDate.getTime() - startDate.getTime(),
+            description: timerDescription,
+            tag: timerTags,
+            billable: true
+        };
+
+        const timeEntries = getTimeEntries();
+        timeEntries.push(newTimeEntry);
+        saveTimeEntries(timeEntries);
+        renderTimeEntries();
+        timerForm.reset();
+        return;
+    }
 
     activeEntry = {
         startTime: Date.now(),
@@ -375,6 +439,20 @@ stopBtn.addEventListener('click', () => {
     timerForm.style.display = '';
     timerForm.reset();
     activeEntry = null;
+});
+
+modeTimerBtn.addEventListener('click', () => {
+    modeTimerBtn.classList.add('active');
+    modeManualBtn.classList.remove('active');
+    manualFields.style.display = 'none';
+    document.getElementById('start-btn').textContent = 'Iniciar';
+});
+
+modeManualBtn.addEventListener('click', () => {
+    modeManualBtn.classList.add('active');
+    modeTimerBtn.classList.remove('active');
+    manualFields.style.display = 'block';
+    document.getElementById('start-btn').textContent = 'Salvar';
 });
 
 renderClientOptions();
