@@ -167,6 +167,41 @@
     color: var(--color-text-secondary);
 }
 
+.report-entry-card input,
+.report-entry-card select {
+    width: auto;
+    padding: 0.1rem 0.3rem;
+    border: 0.0625rem solid transparent;
+    background: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    margin-bottom: 0;
+}
+
+.report-entry-card input:focus,
+.report-entry-card select:focus {
+    border-color: var(--color-border);
+    background-color: var(--color-bg);
+}
+
+.report-entry-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.report-entry-delete-icon {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.report-entry-delete-icon:hover {
+    color: var(--color-danger);
+}
+
 @media (min-width: 48rem) {
     #reports-filter form {
         display: grid;

@@ -131,14 +131,241 @@ function applyFilters() {
                 <p class="report-entry-client">${client.companyName || client.contactName}</p>
                 <p class="report-entry-project">${project.name}</p>
                 <p class="report-entry-description">${entry.description}</p>
+                <p class="report-entry-tag">${entry.tag}</p>
             </div>
-            <div class="report-entry-time">
-                <p class="report-entry-duration">${durationFormatted}</p>
-                <p class="report-entry-period">${startFormatted} – ${endFormatted}</p>
+            <div class="report-entry-actions">
+                <div class="report-entry-time">
+                    <p class="report-entry-duration">${durationFormatted}</p>
+                    <p class="report-entry-period">
+                    <span class="report-entry-start">${startFormatted}</span> – <span class="report-entry-end">${endFormatted}</span>
+                    </p>
+                </div>
+                <i class="fa-solid fa-trash report-entry-delete-icon"></i>
             </div>
         `;
 
         detailedList.appendChild(entryCard);
+
+        // ---- Descrição ----
+        const descriptionEl = entryCard.querySelector('.report-entry-description');
+        descriptionEl.addEventListener('click', () => {
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.value = entry.description;
+            input.className = 'report-entry-description';
+
+            descriptionEl.replaceWith(input);
+            input.focus();
+
+            input.addEventListener('blur', () => {
+                const reportEntries = getTimeEntries();
+                const targetEntry = reportEntries.find((e) => {
+                    return e.id === entry.id;
+                })
+
+                targetEntry.description = input.value;
+                saveTimeEntries(reportEntries);
+                applyFilters();
+            });
+        });
+
+        // ---- Etiqueta ----
+        const tagEl = entryCard.querySelector('.report-entry-tag');
+        tagEl.addEventListener('click', () => {
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.value = entry.tag;
+            input.className = 'report-entry-tag';
+
+            tagEl.replaceWith(input);
+            input.focus();
+
+            input.addEventListener('blur', () => {
+                const reportEntries = getTimeEntries();
+                const targetEntry = reportEntries.find((e) => {
+                    return e.id === entry.id;
+                });
+
+                targetEntry.tag = input.value;
+                saveTimeEntries(reportEntries);
+                applyFilters();
+            });
+        });
+
+        // ---- Projeto ----
+        const projectEl = entryCard.querySelector('.report-entry-project');
+        projectEl.addEventListener('click', () => {
+            const select = document.createElement('select');
+                select.className = 'report-entry-project';
+
+                const availableProjects = getProjectsByClientId(link.clientId);
+                availableProjects.forEach((p) => {
+                    const option = document.createElement('option');
+                    option.value = p.id;
+                    option.textContent = p.name;
+                    if (p.id === project.id) {
+                        option.selected = true;
+                    }
+                    select.appendChild(option);
+                });
+
+                select.addEventListener('change', () => {
+                    const newProjectId = Number(select.value);
+
+                    const clientProjects = getClientProjects();
+                    const newLink = clientProjects.find((cp) => {
+                        return cp.clientId === link.clientId && cp.projectId === newProjectId;
+                    });
+
+                    const timeEntries = getTimeEntries();
+                    const targetEntry = timeEntries.find((e) => {
+                        return e.id === entry.id;
+                    });
+
+                    targetEntry.clientProjectId = newLink.id;
+                    saveTimeEntries(timeEntries);
+                    applyFilters();
+                });
+
+            projectEl.replaceWith(select);
+        });
+
+        // ---- Cliente ----
+        const clientEl = entryCard.querySelector('.report-entry-client');
+        clientEl.addEventListener('click', () => {
+            const select = document.createElement('select');
+            select.className = 'report-entry-client';
+
+            const allClients = getClients();
+            allClients.forEach((c) => {
+                const option = document.createElement('option');
+                option.value = c.id;
+                option.textContent = c.companyName || c.contactName;
+                if (c.id === client.id) {
+                    option.selected = true;
+                }
+                select.appendChild(option);
+            });
+
+            select.addEventListener('change', () => {
+                const newClientId = Number(select.value);
+
+                const projectSelect = document.createElement('select');
+                projectSelect.className = 'report-entry-project';
+
+                const availableProjects = getProjectsByClientId(newClientId);
+                availableProjects.forEach((p) => {
+                    const option = document.createElement('option');
+                    option.value = p.id;
+                    option.textContent = p.name;
+                    projectSelect.appendChild(option);
+                });
+
+                projectSelect.addEventListener('change', () => {
+                    const newProjectId = Number(projectSelect.value);
+
+                    const clientProjects = getClientProjects();
+                    const newLink = clientProjects.find((cp) => {
+                        return cp.clientId === newClientId && cp.projectId === newProjectId;
+                    });
+
+                    const timeEntries = getTimeEntries();
+                    const targetEntry = timeEntries.find((e) => {
+                        return e.id === entry.id;
+                    });
+
+                    targetEntry.clientProjectId = newLink.id;
+                    saveTimeEntries(timeEntries);
+                    applyFilters();
+                });
+
+                const currentProjectEl = entryCard.querySelector('.report-entry-project');
+                currentProjectEl.replaceWith(projectSelect);
+            });
+
+            clientEl.replaceWith(select);
+        }); 
+        
+        // ---- Início ----
+        const startEl = entryCard.querySelector('.report-entry-start');
+        startEl.addEventListener('click', () => {
+            const input = document.createElement('input');
+            input.type = 'time';
+            input.value = startFormatted;
+            input.className = 'report-entry-start';
+
+            startEl.replaceWith(input);
+            input.focus();
+
+            input.addEventListener('blur', () => {
+                const [hours, minutes] = input.value.split(':');
+
+                const newStartDate = new Date(entry.startTime);
+                newStartDate.setHours(Number(hours));
+                newStartDate.setMinutes(Number(minutes));
+
+                const newStartTime = newStartDate.getTime();
+                const timeEntries = getTimeEntries();
+                const targetEntry = timeEntries.find((e) => {
+                    return e.id === entry.id;
+                });
+
+                targetEntry.startTime = newStartTime;
+                targetEntry.duration = targetEntry.endTime - newStartTime;
+
+                saveTimeEntries(timeEntries);
+                applyFilters();
+            });
+        });
+
+        // ---- Fim ----
+        const endEl = entryCard.querySelector('.report-entry-end');
+        endEl.addEventListener('click', () => {
+            const input = document.createElement('input');
+            input.type = 'time';
+            input.value = endFormatted;
+            input.className = 'report-entry-end';
+
+            endEl.replaceWith(input);
+            input.focus();
+
+            input.addEventListener('blur', () => {
+                const [hours, minutes] = input.value.split(':');
+
+                const newEndDate = new Date(entry.endTime);
+                newEndDate.setHours(Number(hours));
+                newEndDate.setMinutes(Number(minutes));
+
+                const newEndTime = newEndDate.getTime();
+
+                const timeEntries = getTimeEntries();
+                const targetEntry = timeEntries.find((e) => {
+                    return e.id === entry.id;
+                });
+
+                targetEntry.endTime = newEndTime;
+                targetEntry.duration = newEndTime - targetEntry.startTime;
+
+                saveTimeEntries(timeEntries);
+                applyFilters();
+            });
+        });
+
+        // ---- Excluir ----
+        const deleteIcon = entryCard.querySelector('.report-entry-delete-icon');
+        deleteIcon.addEventListener('click', () => {
+            const confirmed = confirm('Tem certeza que deseja excluir esse registro?');
+            if (!confirmed) {
+                return;
+            }
+
+            const timeEntries = getTimeEntries();
+            const updatedEntries = timeEntries.filter((e) => {
+                return e.id !== entry.id;
+            });
+            saveTimeEntries(updatedEntries);
+            applyFilters();
+        });        
     });
 
     document.getElementById('total-entries').textContent = entries.length;
