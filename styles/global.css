@@ -294,13 +294,20 @@ textarea:focus {
 }
 
 @media (min-width: 48rem) {
+    main {
+        margin-left: 16.25rem;
+    }
+
     h1 {
         font-size: 2rem;
         text-align: left;
     }
 
     .sidebar {
-        position: relative;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
         display: flex;
         flex-direction: column;
         width: 16.25rem;
@@ -313,6 +320,10 @@ textarea:focus {
 
     .sidebar.collapsed {
         width: 5rem;
+    }
+
+    .sidebar.collapsed + main {
+        margin-left: 5rem;
     }
 
     .sidebar.collapsed nav a {
@@ -415,10 +426,6 @@ textarea:focus {
 
     .bottom-nav {
             display: none;
-    }
-
-    main {
-        padding-bottom: 2rem;
     }
 
     label {
