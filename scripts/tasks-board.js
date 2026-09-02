@@ -2,9 +2,11 @@ const newTaskBtn = document.getElementById('new-task-btn');
 const tasksModal = document.getElementById('tasks-modal');
 const filterBtn = document.getElementById('client-filter-btn');
 const filterMenu = document.getElementById('filter-menu');
+const tasksAttachment = document.getElementById('tasks-attachment');
 const cancelTaskBtn = document.querySelector('.btn-cancel');
 const deleteTaskBtn = document.querySelector('.btn-delete');
 const tasksModalForm = document.querySelector('#tasks-modal form');
+const dropZone = document.querySelector('.drop-zone');
 
 const params = new URLSearchParams(window.location.search);
 const clientId = Number(params.get('clientId'));
@@ -134,6 +136,23 @@ tasksModalForm.addEventListener('submit', (event) => {
     tasksModalForm.reset();
     renderTasks();
     editingTaskId = null;
+});
+
+dropZone.addEventListener('dragover', (event) => {
+    event.preventDefault();
+    dropZone.classList.add('drag-active');
+});
+
+dropZone.addEventListener('dragleave', () => {
+    dropZone.classList.remove('drag-active');
+});
+
+dropZone.addEventListener('drop', (event) => {
+    event.preventDefault();
+    dropZone.classList.remove('drag-active');
+
+    const files = event.dataTransfer.files;
+    tasksAttachment.files = files;
 });
 
 deleteTaskBtn.addEventListener('click', () => {

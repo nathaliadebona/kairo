@@ -274,6 +274,25 @@ textarea:focus {
     border-color: var(--color-accent);
 }
 
+.drop-zone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    padding: 1.5rem;
+    border: 0.125rem dashed var(--color-border);
+    border-radius: 0.5rem;
+    text-align: center;
+    color: var(--color-text-secondary);
+    font-size: 0.85rem;
+}
+
+.drop-zone.drag-active {
+    border-color: var(--color-accent);
+    background-color: var(--color-bg);
+}
+
 @media (min-width: 48rem) {
     h1 {
         font-size: 2rem;

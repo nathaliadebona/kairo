@@ -116,7 +116,10 @@
                         <label for="task-description">Descrição</label>
                         <textarea name="task-description" id="task-description"></textarea>
                         
-                        <input type="file" multiple id="tasks-attachment">
+                        <div class="drop-zone">
+                            <p>Arraste arquivos aqui ou clique para selecionar</p>
+                            <input type="file" id="tasks-attachment" multiple>
+                        </div>
                         
                         <div class="modal-actions">
                             <button type="submit" class="btn-save">Salvar</button>
