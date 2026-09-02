@@ -86,6 +86,12 @@
     margin-top: 0.2rem;
 }
 
+.time-entry-tag {
+    font-size: 0.75rem;
+    color: var(--color-accent);
+    margin-top: 0.2rem;
+}
+
 .time-entry-time {
     display: flex;
     flex-direction: column;

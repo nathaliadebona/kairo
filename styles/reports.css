@@ -102,6 +102,12 @@
     margin-top: 0.2rem;
 }
 
+.report-entry-tag {
+    font-size: 0.75rem;
+    color: var(--color-accent);
+    margin-top: 0.2rem;
+}
+
 .report-entry-time {
     display: flex;
     flex-direction: column;
