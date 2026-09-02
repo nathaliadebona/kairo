@@ -127,6 +127,17 @@
     color: var(--color-text-secondary);
 }
 
+.task-attachments-indicator {
+    position: absolute;
+    top: 2.1rem;
+    right: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+}
+
 @media (min-width: 48rem) {
     .task-card:hover {
         background-color: var(--color-bg);

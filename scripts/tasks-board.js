@@ -53,6 +53,10 @@ function renderTasks() {
         taskCard.innerHTML = `
             <p class="task-title">${task.title}</p>
             <p class="task-priority">${priorityLabel}</p>
+            <div class="task-attachments-indicator">
+                <i class="fa-solid fa-paperclip"></i>
+                <span>${task.attachments.length}</span>
+            </div>
             <i class="fa-solid fa-pen-to-square task-edit-icon"></i>
         `;
 
