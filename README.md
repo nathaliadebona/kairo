@@ -4,6 +4,8 @@ A time tracking, client, task, and finance management app built with vanilla HTM
 
 This is a learning project focused on relational data modeling with `localStorage` (many-to-many relationships between entities), CRUD operations across multiple connected data types, mobile-first responsive design, and inline editing — all without frameworks or libraries beyond Font Awesome and Flatpickr.
 
+https://nathaliadebona.github.io/kairo/finance.html
+
 <img width="1350" height="633" alt="image" src="https://github.com/user-attachments/assets/a6eedd47-1724-459c-9813-d10b802564e9" />
 <img width="1365" height="633" alt="image" src="https://github.com/user-attachments/assets/9556907e-b117-4c0e-94ee-eb7c468f37ce" />
 <img width="1350" height="630" alt="image" src="https://github.com/user-attachments/assets/12b9d55c-1bc0-4f43-8ae8-19281f151fa8" />
