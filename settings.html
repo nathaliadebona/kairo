@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Configurações</title>
+
+        <link rel="shortcut icon" href="assets/kairo-icon.svg" type="image/x-icon">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <link rel="stylesheet" href="styles/global.css">
+        <link rel="stylesheet" href="styles/settings.css">
+    </head>
+
+    <body>
+        <aside class="sidebar">
+            <img src="assets/kairo-logo-lockup.svg" alt="Kairo logo">
+
+            <button type="button" id="toggle-sidebar-btn"><i class="fa-solid fa-circle-chevron-left"></i></button>
+
+            <nav>
+                <ul>
+                    <li><a href="index.html" data-tooltip="Timer"><i class="fa-solid fa-stopwatch"></i> <span>Timer</span></a></li>
+                    <li><a href="clients.html" data-tooltip="Clientes"><i class="fa-solid fa-user"></i> <span>Clientes</span></a></li>
+                    <li><a href="projects.html" data-tooltip="Projetos"><i class="fa-regular fa-clipboard"></i> <span>Projetos</span></a></li>
+                    <li><a href="tasks.html" data-tooltip="Tarefas"><i class="fa-solid fa-list-check"></i> <span>Tarefas</span></a></li>
+                    <li><a href="reports.html" data-tooltip="Relatórios"><i class="fa-solid fa-file-lines"></i> <span>Relatórios</span></a></li>
+                    <li><a href="finance.html" data-tooltip="Financeiro"><i class="fa-solid fa-calculator"></i> <span>Financeiro</span></a></li>
+                    <li><a href="settings.html" data-tooltip="Configurações" class="active"><i class="fa-solid fa-gear"></i> <span>Configurações</span></a></li>
+                </ul>
+            </nav>
+
+            <button type="button" id="toggle-theme-btn"><i class="fa-solid fa-moon"></i> <span>Modo escuro</span></button>
+        </aside>
+
+        <main>
+            <h1>Configurações</h1>
+
+            <section id="backup">
+                <h2>Backup dos dados</h2>
+
+                <p>Seus dados ficam apenas neste navegador. Exporte um backup para guardar uma cópia.</p>
+
+                <button type="button" id="export-btn">Exportar Backup</button>
+                <button type="button" id="import-btn">Importar Backup</button>
+                
+                <input type="file" id="import-file" accept=".json" hidden>
+            </section>
+        </main>
+
+        <nav class="bottom-nav">
+            <ul>
+                <li><a href="index.html"><i class="fa-solid fa-stopwatch"></i></a></li>
+                <li><a href="clients.html"><i class="fa-solid fa-user"></i></a></li>
+                <li><a href="tasks.html"><i class="fa-solid fa-list-check"></i></a></li>
+                <li><button type="button" id="more-menu-btn"><i class="fa-solid fa-ellipsis"></i></button></li>
+            </ul>
+            
+            <div id="more-menu">
+                <a href="projects.html"><i class="fa-regular fa-clipboard"></i></a>
+                <a href="reports.html"><i class="fa-solid fa-file-lines"></i></a>
+                <a href="finance.html"><i class="fa-solid fa-calculator"></i></a>
+                <a href="settings.html" class="active"><i class="fa-solid fa-gear"></i></a>
+            </div>
+        </nav>
+
+        <script src="scripts/nav.js"></script>
+        <script src="scripts/storage.js"></script>
+        <script src="scripts/timer-bar.js"></script>
+        <script src="scripts/settings.js"></script>
+    </body>
+</html>

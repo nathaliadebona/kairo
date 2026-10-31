@@ -100,6 +100,10 @@ body {
     background-color: var(--color-cards-bg);
 }
 
+#more-menu a {
+    margin: 0 0.6rem;
+}
+
 main {
     flex: 1;
     padding: 2rem 3rem;
