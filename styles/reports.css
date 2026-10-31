@@ -4,17 +4,17 @@
     padding: 0.5rem 0.8rem;
     border: 0.0625rem solid var(--color-accent);
     border-radius: 0.3rem;
-    background-color: transparent;
-    color: var(--color-accent);
     font-family: inherit;
     font-size: 0.95rem;
+    color: var(--color-accent);
+    background-color: transparent;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #reports-filter button:hover {
-    background-color: var(--color-accent);
     color: var(--color-bg);
+    background-color: var(--color-accent);
 }
 
 .reports-summary {
@@ -37,11 +37,12 @@
 }
 
 .reports-summary-label {
+    min-height: 2.2rem;
+    margin-bottom: 0.3rem;
     font-size: 0.85rem;
     color: var(--color-text-secondary);
-    margin-bottom: 0.3rem;
     line-height: 1.3;
-    min-height: 2.2rem;
+    
 }
 
 #total-hours,
@@ -57,17 +58,17 @@
     padding: 0.5rem 1rem;
     border: 0.0625rem solid var(--color-accent);
     border-radius: 0.3rem;
-    background-color: transparent;
-    color: var(--color-accent);
     font-family: inherit;
     font-size: 0.9rem;
+    color: var(--color-accent);
+    background-color: transparent;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #reports-summary-toggle:hover {
-    background-color: var(--color-accent);
     color: var(--color-bg);
+    background-color: var(--color-accent);
 }
 
 .report-entry-card {
@@ -93,21 +94,21 @@
 }
 
 .report-entry-project {
+    margin-top: 0.2rem;
     font-size: 0.85rem;
     color: var(--color-text-secondary);
-    margin-top: 0.2rem;
 }
 
 .report-entry-description {
+    margin-top: 0.2rem;
     font-size: 0.85rem;
     color: var(--color-text-secondary);
-    margin-top: 0.2rem;
 }
 
 .report-entry-tag {
+    margin-top: 0.2rem;
     font-size: 0.75rem;
     color: var(--color-accent);
-    margin-top: 0.2rem;
 }
 
 .report-entry-time {
@@ -122,9 +123,9 @@
 }
 
 .report-entry-period {
+    margin-top: 0.2rem;
     font-size: 0.8rem;
     color: var(--color-text-secondary);
-    margin-top: 0.2rem;
 }
 
 .report-summary-group-card {
@@ -161,8 +162,8 @@
     padding: 0.4rem 0.7rem;
     border: 0.0625rem solid var(--color-border);
     border-radius: 0.3rem;
-    background-color: transparent;
     color: var(--color-text-primary);
+    background-color: transparent;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -179,13 +180,13 @@
 .report-entry-card input,
 .report-entry-card select {
     width: auto;
+    margin-bottom: 0;
     padding: 0.1rem 0.3rem;
     border: 0.0625rem solid transparent;
-    background: transparent;
     font-family: inherit;
     font-size: inherit;
     color: inherit;
-    margin-bottom: 0;
+    background: transparent;
 }
 
 .report-entry-card input:focus,

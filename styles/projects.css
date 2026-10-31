@@ -38,10 +38,10 @@ input[type="color"] {
     padding: 0.5rem 1rem;
     border: 0.0625rem solid var(--color-border);
     border-radius: 0.3rem;
-    background-color: transparent;
-    color: var(--color-text-secondary);
     font-family: inherit;
     font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    background-color: transparent;
     cursor: pointer;
 }
 
@@ -69,14 +69,14 @@ input[type="color"] {
 
 .restore-project-btn {
     border: 0.0625rem solid var(--color-accent);
-    background-color: transparent;
     color: var(--color-accent);
+    background-color: transparent;
 }
 
 .permanent-delete-project-btn {
     border: 0.0625rem solid var(--color-danger);
-    background-color: transparent;
     color: var(--color-danger);
+    background-color: transparent;
 }
 
 @media (min-width: 48rem) {
