@@ -19,6 +19,7 @@ input[type="color"] {
     padding: 1rem;
     border-radius: 0.5rem;
     background-color: var(--color-cards-bg);
+    box-shadow: var(--shadow-card);
     cursor: pointer;
     transition: transform 0.3s ease;
 }

@@ -3,6 +3,7 @@
     padding: 1.5rem;
     border-radius: 0.5rem;
     background-color: var(--color-cards-bg);
+    box-shadow: var(--shadow-card);
 }
 
 .btn-spacer {
@@ -39,6 +40,7 @@
     border-radius: 0 0.5rem 0.5rem 0;
     border-left: 0.25rem solid;
     background-color: var(--color-cards-bg);
+    box-shadow: var(--shadow-card);
 }
 
 .time-entry-card input,

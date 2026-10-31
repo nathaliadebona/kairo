@@ -12,6 +12,7 @@
     border-left: 0.25rem solid var(--color-accent);
     border-radius: 0 0.5rem 0.5rem 0;
     background-color: var(--color-cards-bg);
+    box-shadow: var(--shadow-card);
     cursor: pointer;
     transition: transform 0.3s ease;
 }

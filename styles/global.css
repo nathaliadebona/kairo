@@ -24,6 +24,7 @@
     --color-border: #E7D5BC;
     --color-accent: #3B3F8F;
     --color-danger: #7A2030;
+    --shadow-card: 0 0.0625rem 0.25rem rgba(38, 34, 58, 0.12);
 }
 
 body.dark-mode {
@@ -34,6 +35,7 @@ body.dark-mode {
     --color-border: #3A3D7A;
     --color-accent: #A8ACF0;
     --color-danger: #E0707F;
+    --shadow-card: 0 0.0625rem 0.25rem rgba(0, 0, 0, 0.4);
 }
 
 * {
