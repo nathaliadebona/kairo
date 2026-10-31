@@ -112,6 +112,10 @@ h1 {
     text-align: center;
 }
 
+h2 {
+    font-family: 'Fraunces', serif;
+}
+
 #new-client-btn,
 #new-project-btn,
 #new-task-btn {
