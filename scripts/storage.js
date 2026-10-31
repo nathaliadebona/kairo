@@ -23,47 +23,47 @@ function formatDate(timestamp) {
 }
 
 function saveClients(clients) {
-    localStorage.setItem('clients', JSON.stringify(clients));
+    localStorage.setItem('kairo-clients', JSON.stringify(clients));
 }
 
 function getClients() {
-    const data = localStorage.getItem('clients');
+    const data = localStorage.getItem('kairo-clients');
     return data ? JSON.parse(data) : [];
 }
 
 function saveProjects(projects) {
-    localStorage.setItem('projects', JSON.stringify(projects));
+    localStorage.setItem('kairo-projects', JSON.stringify(projects));
 }
 
 function getProjects() {
-    const data = localStorage.getItem('projects');
+    const data = localStorage.getItem('kairo-projects');
     return data ? JSON.parse(data) : [];
 }
 
 function saveClientProjects(clientProjects) {
-    localStorage.setItem('clientProjects', JSON.stringify(clientProjects));
+    localStorage.setItem('kairo-clientProjects', JSON.stringify(clientProjects));
 }
 
 function getClientProjects() {
-    const data = localStorage.getItem('clientProjects');
+    const data = localStorage.getItem('kairo-clientProjects');
     return data ? JSON.parse(data) : [];
 }
 
 function saveTasks(tasks) {
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+    localStorage.setItem('kairo-tasks', JSON.stringify(tasks));
 }
 
 function getTasks() {
-    const data = localStorage.getItem('tasks');
+    const data = localStorage.getItem('kairo-tasks');
     return data ? JSON.parse(data) : [];
 }
 
 function saveTimeEntries(timeEntries) {
-    localStorage.setItem('timeEntries', JSON.stringify(timeEntries));
+    localStorage.setItem('kairo-timeEntries', JSON.stringify(timeEntries));
 }
 
 function getTimeEntries() {
-    const data = localStorage.getItem('timeEntries');
+    const data = localStorage.getItem('kairo-timeEntries');
     return data ? JSON.parse(data) : [];
 }
 
@@ -109,16 +109,16 @@ function formatDurationRounded(ms) {
 }
 
 function saveActiveEntry(activeEntry) {
-    localStorage.setItem('activeEntry', JSON.stringify(activeEntry));
+    localStorage.setItem('kairo-activeEntry', JSON.stringify(activeEntry));
 }
 
 function getActiveEntry() {
-    const data = localStorage.getItem('activeEntry');
+    const data = localStorage.getItem('kairo-activeEntry');
     return data ? JSON.parse(data) : null;
 }
 
 function clearActiveEntry() {
-    localStorage.removeItem('activeEntry');
+    localStorage.removeItem('kairo-activeEntry');
 }
 
 
@@ -154,3 +154,18 @@ function stopActiveTimer() {
 
     clearActiveEntry();
 }
+
+function migrateOldKeys() {
+    const oldKeys = ['clients', 'projects', 'clientProjects', 'tasks', 'timeEntries', 'activeEntry'];
+
+    oldKeys.forEach((oldKey) => {
+        const newKey = `kairo-${oldKey}`;
+        const oldData = localStorage.getItem(oldKey);
+
+        if (oldData !== null && localStorage.getItem(newKey) === null) {
+            localStorage.setItem(newKey, oldData);
+        }
+    });
+}
+
+migrateOldKeys();

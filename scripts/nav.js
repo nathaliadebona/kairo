@@ -47,12 +47,12 @@ toggleThemeBtn.addEventListener('click', () => {
     }
 
     const isDarkMode = document.body.classList.contains('dark-mode');
-    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+    localStorage.setItem('kairo-theme', isDarkMode ? 'dark' : 'light');
 
     updateLogo();
 });
 
-const savedTheme = localStorage.getItem('theme');
+const savedTheme = localStorage.getItem('kairo-theme');
 if (savedTheme === 'dark') {
     document.body.classList.add('dark-mode');
     themeIcon.classList.remove('fa-moon');
