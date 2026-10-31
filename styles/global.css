@@ -443,3 +443,35 @@ textarea:focus {
 
 
 
+
+#timer-bar {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0.5rem 0.5rem 1rem;
+    border-radius: 2rem;
+    background-color: var(--color-accent);
+    color: var(--color-bg);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+#timer-bar-stop {
+    padding: 0.3rem 0.8rem;
+    border: none;
+    border-radius: 1rem;
+    background-color: var(--color-danger);
+    color: var(--color-bg);
+    font-family: inherit;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: filter 0.3s ease;
+}
+
+#timer-bar-stop:hover {
+    filter: brightness(90%);
+}

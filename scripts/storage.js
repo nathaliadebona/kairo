@@ -102,3 +102,50 @@ function formatDurationRounded(ms) {
 
     return `${hours}h ${minutes}min`;
 }
+
+function saveActiveEntry(activeEntry) {
+    localStorage.setItem('activeEntry', JSON.stringify(activeEntry));
+}
+
+function getActiveEntry() {
+    const data = localStorage.getItem('activeEntry');
+    return data ? JSON.parse(data) : null;
+}
+
+function clearActiveEntry() {
+    localStorage.removeItem('activeEntry');
+}
+
+
+function stopActiveTimer() {
+    const activeEntry = getActiveEntry();
+
+    if (!activeEntry) {
+        return;
+    }
+
+    const endTime = Date.now();
+    const clientProjects = getClientProjects();
+    const link = clientProjects.find((cp) => {
+        return cp.clientId === activeEntry.clientId && cp.projectId === activeEntry.projectId;
+    });
+
+    if (link) {
+        const newTimeEntry = {
+            id: generateId(),
+            clientProjectId: link.id,
+            startTime: activeEntry.startTime,
+            endTime: endTime,
+            duration: endTime - activeEntry.startTime,
+            description: activeEntry.description,
+            tag: activeEntry.tag,
+            billable: true
+        };
+
+        const timeEntries = getTimeEntries();
+        timeEntries.push(newTimeEntry);
+        saveTimeEntries(timeEntries);
+    }
+
+    clearActiveEntry();
+}

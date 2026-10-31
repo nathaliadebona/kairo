@@ -298,6 +298,29 @@ function renderTimeEntries() {
     });
 }
 
+function updateTimerDisplay() {
+    const elapsed = Date.now() - activeEntry.startTime;
+    timerDisplay.textContent = formatDuration(elapsed);
+}
+
+function startTimerDisplay() {
+    updateTimerDisplay();
+    intervalId = setInterval(updateTimerDisplay, 1000);
+}
+
+function restoreActiveTimer() {
+    const savedEntry = getActiveEntry();
+
+    if (!savedEntry) {
+        return;
+    }
+
+    activeEntry = savedEntry;
+    timerRunning.style.display = 'flex';
+    timerForm.style.display = 'none';
+    startTimerDisplay();
+}
+
 function isToday(timestamp) {
     const entryDate = new Date(timestamp);
     const now = new Date();
@@ -395,44 +418,18 @@ timerForm.addEventListener('submit', (event) => {
         tag: timerTags
     };
 
+    saveActiveEntry(activeEntry);
+
     timerRunning.style.display = 'flex';
     timerForm.style.display = 'none';
 
-    intervalId = setInterval(() => {
-        const elapsed = Date.now() - activeEntry.startTime;
-        const totalSeconds = Math.floor(elapsed / 1000);
-        const seconds = totalSeconds % 60;
-        const totalMinutes = Math.floor(totalSeconds / 60);
-        const minutes = totalMinutes % 60;
-        const hours = Math.floor(totalMinutes / 60);
-        timerDisplay.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-    }, 1000);
+    startTimerDisplay();
 });
 
 stopBtn.addEventListener('click', () => {
     clearInterval(intervalId);
 
-    const endTime = Date.now();
-    const duration = endTime - activeEntry.startTime;
-    const clientProjects = getClientProjects();
-    const link = clientProjects.find((cp) => {
-        return cp.clientId === activeEntry.clientId && cp.projectId === activeEntry.projectId;
-    });
-
-    const newTimeEntry = {
-        id: generateId(),
-        clientProjectId: link.id,
-        startTime: activeEntry.startTime,
-        endTime: endTime,
-        duration: duration,
-        description: activeEntry.description,
-        tag: activeEntry.tag,
-        billable: true,
-    };
-
-    const timeEntries = getTimeEntries();
-    timeEntries.push(newTimeEntry);
-    saveTimeEntries(timeEntries);
+    stopActiveTimer();
     renderTimeEntries();
 
     timerRunning.style.display = 'none';
@@ -457,3 +454,4 @@ modeManualBtn.addEventListener('click', () => {
 
 renderClientOptions();
 renderTimeEntries();
+restoreActiveTimer();
