@@ -63,31 +63,31 @@
 }
 
 .column-status-todo {
-    border-top: 0.25rem solid #D85A30;
+    border-top: 0.25rem solid #C9573A;
 }
 .column-status-todo h2 {
-    color: #D85A30;
+    color: #C9573A;
 }
 
 .column-status-doing {
-    border-top: 0.25rem solid #378ADD;
+    border-top: 0.25rem solid var(--color-accent);
 }
 .column-status-doing h2 {
-    color: #378ADD;
+    color: var(--color-accent);
 }
 
 .column-status-waiting {
-    border-top: 0.25rem solid #E0A62B;
+    border-top: 0.25rem solid #C99A2E;
 }
 .column-status-waiting h2 {
-    color: #E0A62B;
+    color: #C99A2E;
 }
 
 .column-status-done {
-    border-top: 0.25rem solid #1D9E75;
+    border-top: 0.25rem solid #5E8F6B;
 }
 .column-status-done h2 {
-    color: #1D9E75;
+    color: #5E8F6B;
 }
 
 .column-status-archived {
