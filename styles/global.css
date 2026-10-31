@@ -10,6 +10,12 @@
     font-weight: 500;
 }
 
+@font-face {
+    font-family: 'Fraunces';
+    src: url('../fonts/fraunces-bold.woff2') format('woff2');
+    font-weight: 700;
+}
+
 :root {
     --color-bg: #FAF0E1;
     --color-cards-bg: #FFFBF5;
@@ -101,6 +107,7 @@ main {
 
 h1 {
     margin-bottom: 2rem;
+    font-family: 'Fraunces', serif;
     font-size: 1.5rem;
     text-align: center;
 }
