@@ -120,6 +120,7 @@ function applyFilters() {
         const project = findProjectById(link.projectId);
 
         const durationFormatted = formatDurationRounded(entry.duration);
+        const dateFormatted = formatDate(entry.startTime);
         const startFormatted = formatTime(entry.startTime);
         const endFormatted = formatTime(entry.endTime);
 
@@ -137,7 +138,7 @@ function applyFilters() {
                 <div class="report-entry-time">
                     <p class="report-entry-duration">${durationFormatted}</p>
                     <p class="report-entry-period">
-                    <span class="report-entry-start">${startFormatted}</span> – <span class="report-entry-end">${endFormatted}</span>
+                    <span class="report-entry-date">${dateFormatted}</span> · <span class="report-entry-start">${startFormatted}</span> – <span class="report-entry-end">${endFormatted}</span>
                     </p>
                 </div>
                 <i class="fa-solid fa-trash report-entry-delete-icon"></i>
