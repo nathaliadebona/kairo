@@ -157,6 +157,12 @@ dialog {
     padding: 2rem;
 }
 
+.modal-content h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
 dialog::backdrop {
     background-color: rgba(0, 0, 0, 0.5)
 }
