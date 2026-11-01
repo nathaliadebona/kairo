@@ -409,36 +409,15 @@ textarea:focus {
         background-color: var(--color-accent);
     }
 
-    #toggle-theme-btn {
-        margin-top: auto;
-    }
-
-    #toggle-sidebar-btn,
-    #toggle-theme-btn {
-        border: none;
-        background: none;
-        cursor: pointer;
-    }   
-
     #toggle-sidebar-btn {
         position: absolute;
         top: 2.5rem;
         right: -0.5rem;
+        border: none;
         font-size: 1.1rem;
         color: var(--color-accent);
-    }
-
-    #toggle-theme-btn {
-        display: flex;
-        gap: 0.5rem;
-        padding: 0.8rem;
-        font-size: 1rem;
-        color: var(--color-text-primary);
-        transition: background-color 0.3s ease;
-    }
-
-    #toggle-theme-btn:hover {
-        background-color: var(--color-bg);
+        background: none;
+        cursor: pointer;
     }
 
     .bottom-nav {

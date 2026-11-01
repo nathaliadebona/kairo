@@ -1,13 +1,11 @@
 const toggleSidebarBtn = document.getElementById('toggle-sidebar-btn');
 const moreMenuBtn = document.getElementById('more-menu-btn');
 const moreMenu = document.getElementById('more-menu');
-const toggleThemeBtn = document.getElementById('toggle-theme-btn');
+const themeBtn = document.getElementById('theme-btn');
 
 const sidebar = document.querySelector('.sidebar');
 const logoImg = document.querySelector('.sidebar img');
 const toggleSidebarIcon = toggleSidebarBtn.querySelector('i');
-const themeIcon = toggleThemeBtn.querySelector('i');
-const themeText = toggleThemeBtn.querySelector('span');
 
 function updateLogo() {
     const isDark = document.body.classList.contains('dark-mode');
@@ -18,6 +16,16 @@ function updateLogo() {
     } else {
         logoImg.src = isDark ? 'assets/kairo-logo-lockup-dark.svg' : 'assets/kairo-logo-lockup.svg';
     }
+}
+
+function updateThemeButton() {
+    const isDark = document.body.classList.contains('dark-mode');
+    const themeIcon = themeBtn.querySelector('i');
+    const themeText = themeBtn.querySelector('span');
+
+    themeIcon.classList.toggle('fa-moon', !isDark);
+    themeIcon.classList.toggle('fa-sun', isDark);
+    themeText.textContent = isDark ? 'Modo claro' : 'Modo escuro';
 }
 
 toggleSidebarBtn.addEventListener('click', () => {
@@ -35,29 +43,23 @@ moreMenuBtn.addEventListener('click', () => {
     }
 });
 
-toggleThemeBtn.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    themeIcon.classList.toggle('fa-moon');
-    themeIcon.classList.toggle('fa-sun');
-    
-    if (themeIcon.classList.contains('fa-sun')) {
-        themeText.textContent = 'Modo claro';
-    } else {
-        themeText.textContent = 'Modo escuro';
-    }
-
-    const isDarkMode = document.body.classList.contains('dark-mode');
-    localStorage.setItem('kairo-theme', isDarkMode ? 'dark' : 'light');
-
-    updateLogo();
-});
-
 const savedTheme = localStorage.getItem('kairo-theme');
 if (savedTheme === 'dark') {
     document.body.classList.add('dark-mode');
-    themeIcon.classList.remove('fa-moon');
-    themeIcon.classList.add('fa-sun');
-    themeText.textContent = 'Modo claro';
+}
+
+if (themeBtn) {
+    updateThemeButton();
+
+    themeBtn.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+
+        const isDarkMode = document.body.classList.contains('dark-mode');
+        localStorage.setItem('kairo-theme', isDarkMode ? 'dark' : 'light');
+
+        updateThemeButton();
+        updateLogo();
+    });
 }
 
 updateLogo();
