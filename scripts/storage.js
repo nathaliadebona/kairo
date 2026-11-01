@@ -129,7 +129,9 @@ function stopActiveTimer() {
         return;
     }
 
-    const endTime = Date.now();
+    const rawDuration = Date.now() - activeEntry.startTime;
+    const duration = Math.ceil(rawDuration / 60000) * 60000;
+    const endTime = activeEntry.startTime + duration;
     const clientProjects = getClientProjects();
     const link = clientProjects.find((cp) => {
         return cp.clientId === activeEntry.clientId && cp.projectId === activeEntry.projectId;
@@ -141,7 +143,7 @@ function stopActiveTimer() {
             clientProjectId: link.id,
             startTime: activeEntry.startTime,
             endTime: endTime,
-            duration: endTime - activeEntry.startTime,
+            duration: duration,
             description: activeEntry.description,
             tag: activeEntry.tag,
             billable: true
