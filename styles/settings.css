@@ -1,0 +1,63 @@
+#appearance,
+#backup {
+    max-width: 40rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--color-cards-bg);
+    box-shadow: var(--shadow-card);
+}
+
+#appearance h2,
+#backup h2 {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+#backup p {
+    margin-bottom: 1rem;
+    color: var(--color-text-secondary);
+}
+
+.settings-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+#export-btn,
+#import-btn,
+#theme-btn {
+    width: 100%;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    border-radius: 0.3rem;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--color-bg);
+    background-color: var(--color-accent);
+    cursor: pointer;
+    transition: filter 0.3s ease;
+}
+
+#export-btn:hover,
+#import-btn:hover,
+#theme-btn:hover {
+    filter: brightness(90%);
+}
+
+#theme-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+@media (min-width: 48rem) {
+    #export-btn,
+    #import-btn,
+    #theme-btn {
+        width: auto;
+    }
+}
+
