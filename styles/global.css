@@ -125,7 +125,7 @@ h2 {
 #new-client-btn,
 #new-project-btn,
 #new-task-btn {
-    padding: 0.5rem 0.8rem;
+    padding: 0.75rem 0.8rem;
     border: none;
     border-radius: 0.3rem;
     color: var(--color-bg);
@@ -220,7 +220,7 @@ textarea {
 .btn-save,
 .btn-cancel,
 .btn-delete {
-    padding: 0.3rem 0.6rem;
+    padding: 0.75rem 0.6rem;
     border-radius: 0.3rem;
     font-family: inherit;
     font-size: 0.9rem;
