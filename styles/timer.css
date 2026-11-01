@@ -177,12 +177,6 @@
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.timer-mode-toggle button.active {
-    background-color: var(--color-accent);
-    color: var(--color-bg);
-    border-color: var(--color-accent);
-}
-
 @media (min-width: 48rem) {
     form {
         display: flex;
@@ -205,12 +199,6 @@
     .form-group {
         display: flex;
         flex-direction: column;
-    }
-
-    .manual-fields-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        gap: 1rem;
     }
 
     #manual-total {

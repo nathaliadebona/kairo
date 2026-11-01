@@ -37,8 +37,7 @@
 
             <section id="timer">
                 <div class="timer-mode-toggle">
-                    <button type="button" id="mode-timer-btn" class="active">Cronômetro</button>
-                    <button type="button" id="mode-manual-btn">Manual</button>
+                    <button type="button" id="open-manual-btn">Adicionar manualmente</button>
                 </div>
 
                 <form action="">
@@ -64,27 +63,6 @@
                         </div>
                     </div>
 
-                    <div id="manual-fields" style="display: none;">
-                        <div class="form-row manual-fields-row">
-                            <div class="form-group">
-                                <label for="manual-date">Data</label>
-                                <input type="date" id="manual-date">
-                            </div>
-                            <div class="form-group">
-                                <label for="manual-start">Início</label>
-                                <input type="time" id="manual-start">
-                            </div>
-                            <div class="form-group">
-                                <label for="manual-end">Fim</label>
-                                <input type="time" id="manual-end">
-                            </div>
-                            <div class="form-group">
-                                <label>Total</label>
-                                <p id="manual-total">00:00</p>
-                            </div>
-                        </div>
-                    </div>
-
                     <button type="submit" id="start-btn">Iniciar</button>
                 </form>
 
@@ -97,10 +75,65 @@
             <section id="timer-list">
                 <h2>Atividades de hoje</h2>
 
-                <div id="timer-list-items">
-
-                </div>
+                <div id="timer-list-items"></div>
             </section>
+
+            <dialog id="manual-modal">
+                <div class="modal-content">
+                    <h2>Apontamento manual</h2>
+
+                    <form action="">
+                        <div class="form-group">
+                            <label for="manual-description">Descrição</label>
+                            <input type="text" id="manual-description" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="manual-tags">Etiqueta</label>
+                            <input type="text" id="manual-tags">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="manual-client">Cliente</label>
+                            <select name="manual-client" id="manual-client" required>
+                                <option value="">Selecione</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="manual-project">Projeto</label>
+                            <select name="manual-project" id="manual-project" required disabled>
+                                <option value="">Selecione</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="manual-date">Data</label>
+                            <input type="date" id="manual-date" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="manual-start">Início</label>
+                            <input type="time" id="manual-start" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="manual-end">Fim</label>
+                            <input type="time" id="manual-end" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Total</label>
+                            <p id="manual-total">00:00</p>
+                        </div>
+
+                        <div class="modal-actions">
+                            <button type="button" class="btn-cancel">Cancelar</button>
+                            <button type="submit" class="btn-save">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </dialog>
         </main>
 
         <nav class="bottom-nav">
